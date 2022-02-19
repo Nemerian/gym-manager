@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head th:replace="fragment ::html_headtag">
+    <meta charset="ISO-8859-1">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+     <title>Lista Membri</title>
+</head>
+<body>
+  <div th:replace="fragment ::html_header"></div>
+  <div>
+        <meta charset="UTF-8" />
+        <title th:text="${add} ? 'Create a Membru' : 'Edit a Membru'" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1 th:text="${add} ? 'Create a Membru:' : 'Edit a Membru:'" />
+        <a th:href="@{/membri}">Back to Membru List</a>
+        <br/><br/>
+        <form th:action="${add} ? @{/membri/add} : @{/membri/{id}/edit(id=${membru.id})}"
+              th:object="${membru}" method="POST">
+            <table border="0">
+                <tr th:if="${membru.id}">
+                    <td>ID</td>
+                    <td>:</td>
+                    <td th:utext="${membru.id}">...</td>             
+                </tr>
+                <tr>
+                    <td>Nume</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{nume}" /></td>              
+                </tr>
+                <tr>
+                    <td>Prenume</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{prenume}" /></td>              
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{email}" /></td>              
+                </tr>
+                <tr>
+                    <td>Telefon</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{telefon}" /></td>              
+                </tr>
+                <tr>
+                    <td>Data Inscriere</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{data}" /></td>              
+                </tr>
+                
+            </table>
+            <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+        </form>
+        <br/>
+        <!-- Check if errorMessage is not null and not empty -->       
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />       
+    </body>
+</div>
+<div th:replace="fragment ::html_footer"></div>
+</body>
+</html>
