@@ -22,11 +22,5 @@ public class FragmentsController {
     public String paramsPage() {
         return "params.html";
     }
-
-    
-    @GetMapping("/istoric_abonati")
-    public String istoric_Abonati_Page() {
-        return "istoric_abonati.html";
-    }
 }
 	
