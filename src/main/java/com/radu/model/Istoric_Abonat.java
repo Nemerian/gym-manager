@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Istoric_Abonati {
+public class Istoric_Abonat {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;	
@@ -21,9 +21,23 @@ public class Istoric_Abonati {
 	private Integer Valoare;
 	private String Observatii;
 
+	public Istoric_Abonat() {
+	}
+
+	public Istoric_Abonat(Long id, Long IdMembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
+		this.id = id;
+		this.IdMembru = IdMembru;
+		this.IdTipPachet = IdTipPachet;
+		this.NumeMembru = NumeMembru;
+		this.DenumirePachet = DenumirePachet;
+		this.DataStart = DataStart;
+		this.DataSfarsit = DataSfarsit;
+		this.Valoare = Valoare;
+		this.Observatii = Observatii;
+	}
 
 	public Long getId(){
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -91,18 +105,6 @@ public class Istoric_Abonati {
 	}
 
 	public void setObservatii(String Observatii) {
-		this.Observatii = Observatii;
-	}
-
-	public Istoric_Abonati(Long id, Long IdMembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
-		this.id = id;
-		this.IdMembru = IdMembru;
-		this.IdTipPachet = IdTipPachet;
-		this.NumeMembru = NumeMembru;
-		this.DenumirePachet = DenumirePachet;
-		this.DataStart = DataStart;
-		this.DataSfarsit = DataSfarsit;
-		this.Valoare = Valoare;
 		this.Observatii = Observatii;
 	}
 }
