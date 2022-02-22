@@ -20,14 +20,14 @@ public class Istoric_Abonat_Service {
 
    
     @Autowired
-    private Istoric_Abonat_Repository istoric_abonat_Repository;
+    private Istoric_Abonat_Repository istoric_Abonat_Repository;
     
     private boolean existsById(Long id) {
-        return istoric_abonat_Repository.existsById(id);
+        return istoric_Abonat_Repository.existsById(id);
     }
     
     public Istoric_Abonat findById(Long id) throws ResourceNotFoundException {
-        Istoric_Abonat istoric_abonat = Istoric_Abonat_Repository.findById(id).orElse(null);
+        Istoric_Abonat istoric_abonat = istoric_Abonat_Repository.findById(id).orElse(null);
         if (istoric_abonat==null) {
             throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
         }
@@ -38,17 +38,17 @@ public class Istoric_Abonat_Service {
         List<Istoric_Abonat> istoric_abonati = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage, 
                 Sort.by("id").ascending());
-                Istoric_Abonat_Repository.findAll(sortedByIdAsc).forEach(istoric_abonati::add);
+                istoric_Abonat_Repository.findAll(sortedByIdAsc).forEach(istoric_abonati::add);
         return istoric_abonati;
     }
     
-    public Istoric_Abonat save(Istoric_Abonat istoric_abonati) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.hasLength(istoric_abonati.getNumeMembru())) {
-            if (istoric_abonati.getId() != null && existsById(istoric_abonati.getId())) { 
-                throw new ResourceAlreadyExistsException("Istoric Abonati with id: " + Istoric_Abonat.getId() +
+    public Istoric_Abonat save(Istoric_Abonat istoric_abonat) throws BadResourceException, ResourceAlreadyExistsException {
+        if (!StringUtils.hasLength(istoric_abonat.getNumeMembru())) {
+            if (istoric_abonat.getId() != null && existsById(istoric_abonat.getId())) { 
+                throw new ResourceAlreadyExistsException("Istoric Abonati with id: " + istoric_abonat.getId() +
                         " already exists");
             }
-            return istoric_abonat_Repository.save(istoric_abonati);
+            return istoric_Abonat_Repository.save(istoric_abonat);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save istoric abonati");
@@ -63,7 +63,7 @@ public class Istoric_Abonat_Service {
             if (!existsById(istoric_abonat.getId())) {
                 throw new ResourceNotFoundException("Cannot find Contact with id: " + istoric_abonat.getId());
             }
-            istoric_abonat_Repository.save(istoric_abonat);
+            istoric_Abonat_Repository.save(istoric_abonat);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save istoric abonati");
@@ -77,11 +77,11 @@ public class Istoric_Abonat_Service {
             throw new ResourceNotFoundException("Cannot find istoric abonati with id: " + id);
         }
         else {
-            istoric_abonat_Repository.deleteById(id);
+            istoric_Abonat_Repository.deleteById(id);
         }
     }
     
     public Long count() {
-        return  istoric_abonat_Repository.count();
+        return  istoric_Abonat_Repository.count();
     }
 }
