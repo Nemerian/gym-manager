@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class FragmentsController {
-	private final int ROW_PER_PAGE = 5;
+//	private final int ROW_PER_PAGE = 5;
 
     @GetMapping("/fragments")
     public String getHome() {
@@ -23,11 +23,10 @@ public class FragmentsController {
         return "params.html";
     }
 
-    /*
+    
     @GetMapping("/istoric_abonati")
     public String istoric_Abonati_Page() {
         return "istoric_abonati.html";
     }
-*/
 }
 	

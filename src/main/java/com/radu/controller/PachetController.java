@@ -98,7 +98,7 @@ public String showAddPachet(Model model) {
 public String addPachete(Model model,
         @ModelAttribute("pachet") Pachet pachet) {        
     try {
-        Pachet newPachete = pachetService.save(pachet);
+        Pachet newPachet = pachetService.save(pachet);
         return "redirect:/pachete";  
     } catch (Exception ex) {
         // log exception first, 

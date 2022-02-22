@@ -43,7 +43,7 @@ public class MembruService {
     }
     
     public Membru save(Membru membru) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.isEmpty(membru.getNume())) {
+        if (!StringUtils.hasLength(membru.getNume())) {
             if (membru.getId() != null && existsById(membru.getId())) { 
                 throw new ResourceAlreadyExistsException("Membru with id: " +  membru.getId() +
                         " already exists");
@@ -59,7 +59,7 @@ public class MembruService {
     
     public void update(Membru membru) 
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(membru.getNume())) {
+        if (!StringUtils.hasLength(membru.getNume())) {
             if (!existsById(membru.getId())) {
                 throw new ResourceNotFoundException("Cannot find Contact with id: "+ membru.getId());
             }

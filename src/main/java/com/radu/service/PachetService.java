@@ -43,7 +43,7 @@ public class PachetService {
     }
     
     public Pachet save(Pachet Pachet) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.isEmpty(Pachet.getDenumire())) {
+        if (!StringUtils.hasLength(Pachet.getDenumire())) {
             if (Pachet.getId() != null && existsById(Pachet.getId())) { 
                 throw new ResourceAlreadyExistsException("Pachet with id: " + Pachet.getId() +
                         " already exists");
@@ -59,7 +59,7 @@ public class PachetService {
     
     public void update(Pachet Pachet) 
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(Pachet.getDenumire())) {
+        if (!StringUtils.hasLength(Pachet.getDenumire())) {
             if (!existsById(Pachet.getId())) {
                 throw new ResourceNotFoundException("Cannot find Contact with id: " + Pachet.getId());
             }
