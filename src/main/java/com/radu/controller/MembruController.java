@@ -5,8 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.radu.repository.MembruRepository;
+import com.radu.service.Istoric_Abonat_Service;
 import com.radu.service.MembruService;
 import com.radu.exception.ResourceNotFoundException;
+import com.radu.model.Istoric_Abonat;
 import com.radu.model.Membru;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +112,38 @@ public class MembruController {
       try {
           membru.setId(id);
           membruService.update(membru);
+          return "redirect:/membri";  
+      } catch (Exception ex) {
+          // log exception first, 
+          // then show error
+          String errorMessage = ex.getMessage();
+          logger.error(errorMessage);
+          model.addAttribute("errorMessage", errorMessage);
+          model.addAttribute("add", false);
+          return "membru-edit.html";
+      }
+  }
+
+  @GetMapping(value = {"/istoric_abonat/{id}/edit"})
+  public String showEditIstoric(Model model, @PathVariable long id) {
+      Istoric_Abonat istoric_abonat = null;
+      try {
+        istoric_abonat = Istoric_Abonat_Service.findByIdMembru(id);
+      } catch (ResourceNotFoundException ex) {
+          model.addAttribute("errorMessage", "Membru not found");
+      }
+      model.addAttribute("add", false);
+      model.addAttribute("istoric_abonat", istoric_abonat);
+      return "membru-edit.html";
+  }
+
+  @PostMapping(value = {"/istoric_abonat/{id}/edit"})
+  public String updateIstoric(Model model,
+          @PathVariable long id,
+          @ModelAttribute("istoric_abonat") Istoric_Abonat istoric_abonat) {        
+      try {
+        istoric_abonat.setIdMembru(id);
+        Istoric_Abonat_Service.update(istoric_abonat);
           return "redirect:/membri";  
       } catch (Exception ex) {
           // log exception first, 

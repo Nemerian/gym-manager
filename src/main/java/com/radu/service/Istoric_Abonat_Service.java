@@ -34,6 +34,14 @@ public class Istoric_Abonat_Service {
         else return istoric_abonat;
     }
     
+    public Istoric_Abonat findByIdMembru(Long idMembru) throws ResourceNotFoundException {
+        Istoric_Abonat istoric_abonat = istoric_Abonat_Repository.findById(idMembru).orElse(null);
+        if (istoric_abonat==null) {
+            throw new ResourceNotFoundException("Cannot find Contact with id: " + idMembru);
+        }
+        else return istoric_abonat;
+    }
+    
     public List<Istoric_Abonat> findAll(int pageNumber, int rowPerPage) {
         List<Istoric_Abonat> istoric_abonati = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage, 
