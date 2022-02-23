@@ -33,6 +33,9 @@ public class MembruController {
   @Autowired
   private MembruService membruService;
   
+  @Autowired
+  private Istoric_Abonat_Service istoric_abonat_service;
+  
   @GetMapping("/membri")
   public String getMembri(Model model,
 		@RequestParam(value = "page", defaultValue = "1") int pageNumber) {
@@ -126,9 +129,9 @@ public class MembruController {
 
   @GetMapping(value = {"/istoric_abonat/{id}/edit"})
   public String showEditIstoric(Model model, @PathVariable long id) {
-      Istoric_Abonat istoric_abonat = null;
+      List<Istoric_Abonat> istoric_abonat = null;
       try {
-         istoric_abonat = Istoric_Abonat_Service.(id);
+         istoric_abonat = istoric_abonat_service.findByIdMembru(id);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Membru not found");
       }
@@ -143,7 +146,7 @@ public class MembruController {
           @ModelAttribute("istoric_abonat") Istoric_Abonat istoric_abonat) {        
       try {
         istoric_abonat.setIdMembru(id);
-        Istoric_Abonat_Service.update(istoric_abonat);
+        istoric_abonat_service.update(istoric_abonat);
           return "redirect:/membri";  
       } catch (Exception ex) {
           // log exception first, 
