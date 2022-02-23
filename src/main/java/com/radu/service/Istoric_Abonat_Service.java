@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -34,8 +35,8 @@ public class Istoric_Abonat_Service {
         else return istoric_abonat;
     }
     
-    public Istoric_Abonat findByIdMembru(Long idMembru) throws ResourceNotFoundException {
-        Istoric_Abonat istoric_abonat = istoric_Abonat_Repository.findById(idMembru).orElse(null);
+	public List<Istoric_Abonat> findByIdMembru(Long idMembru) throws ResourceNotFoundException {
+        List<Istoric_Abonat> istoric_abonat = istoric_Abonat_Repository.findByIdMembru(idMembru);
         if (istoric_abonat==null) {
             throw new ResourceNotFoundException("Cannot find Contact with id: " + idMembru);
         }

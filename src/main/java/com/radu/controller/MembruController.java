@@ -128,7 +128,7 @@ public class MembruController {
   public String showEditIstoric(Model model, @PathVariable long id) {
       Istoric_Abonat istoric_abonat = null;
       try {
-        istoric_abonat = Istoric_Abonat_Service.findByIdMembru(id);
+         istoric_abonat = Istoric_Abonat_Service.(id);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Membru not found");
       }
