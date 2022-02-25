@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PachetRepository extends JpaRepository<Pachet, Long> {
 
-	List<Pachet> findAll();
+	//List<Pachet> findAll();
 }

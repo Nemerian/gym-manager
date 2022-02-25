@@ -12,26 +12,26 @@ public class Pachet {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;	
-	private String Denumire;
-	private Integer Durata;
-	private Integer NrSedinte;
-	private Date DataStart;
-	private Date DataSfarsit;
-	private Integer Valoare;
-	private String Observatii;
+	private String denumire;
+	private Integer durata;
+	private Integer nsedinte;
+	private Date datastart;
+	private Date datasfarsit;
+	private Integer valoare;
+	private String observatii;
 
 	public Pachet(){
 	}
 	
 	public Pachet(Long id, String Denumire, Integer Durata, Integer NrSedinte, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
 		this.id = id;
-		this.Denumire = Denumire;
-		this.Durata = Durata;
-		this.NrSedinte = NrSedinte;
-		this.DataStart = DataStart;
-		this.DataSfarsit = DataSfarsit;
-		this.Valoare = Valoare;
-		this.Observatii = Observatii;
+		this.denumire = Denumire;
+		this.durata = Durata;
+		this.nsedinte = NrSedinte;
+		this.datastart = DataStart;
+		this.datasfarsit = DataSfarsit;
+		this.valoare = Valoare;
+		this.observatii = Observatii;
 	}
 
 
@@ -44,58 +44,58 @@ public class Pachet {
 	}
 
 	public String getDenumire() {
-		return this.Denumire;
+		return this.denumire;
 	}
 
 	public void setDenumire(String Denumire) {
-		this.Denumire = Denumire;
+		this.denumire = Denumire;
 	}
 
 	public Integer getDurata() {
-		return this.Durata;
+		return this.durata;
 	}
 
 	public void setDurata(Integer Durata) {
-		this.Durata = Durata;
+		this.durata = Durata;
 	}
 
 	public Integer getNrSedinte() {
-		return this.NrSedinte;
+		return this.nsedinte;
 	}
 
 	public void setNrSedinte(Integer NrSedinte) {
-		this.NrSedinte = NrSedinte;
+		this.nsedinte = NrSedinte;
 	}
 
 	public Date getDataStart() {
-		return this.DataStart;
+		return this.datastart;
 	}
 
 	public void setDataStart(Date DataStart) {
-		this.DataStart = DataStart;
+		this.datastart = DataStart;
 	}
 
 	public Date getDataSfarsit() {
-		return this.DataSfarsit;
+		return this.datasfarsit;
 	}
 
 	public void setDataSfarsit(Date DataSfarsit) {
-		this.DataSfarsit = DataSfarsit;
+		this.datasfarsit = DataSfarsit;
 	}
 
 	public Integer getValoare() {
-		return this.Valoare;
+		return this.valoare;
 	}
 
 	public void setValoare(Integer Valoare) {
-		this.Valoare = Valoare;
+		this.valoare = Valoare;
 	}
 
 	public String getObservatii() {
-		return this.Observatii;
+		return this.observatii;
 	}
 
 	public void setObservatii(String Observatii) {
-		this.Observatii = Observatii;
+		this.observatii = Observatii;
 	}
 }

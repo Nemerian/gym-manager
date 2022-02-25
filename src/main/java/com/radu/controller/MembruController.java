@@ -127,38 +127,6 @@ public class MembruController {
       }
   }
 
-  @GetMapping(value = {"/istoric_abonat/{id}/edit"})
-  public String showEditIstoric(Model model, @PathVariable long id) {
-      List<Istoric_Abonat> istoric_abonat = null;
-      try {
-         istoric_abonat = istoric_abonat_service.findByIdMembru(id);
-      } catch (ResourceNotFoundException ex) {
-          model.addAttribute("errorMessage", "Membru not found");
-      }
-      model.addAttribute("add", false);
-      model.addAttribute("istoric_abonat", istoric_abonat);
-      return "membru-edit.html";
-  }
-
-  @PostMapping(value = {"/istoric_abonat/{id}/edit"})
-  public String updateIstoric(Model model,
-          @PathVariable long id,
-          @ModelAttribute("istoric_abonat") Istoric_Abonat istoric_abonat) {        
-      try {
-        istoric_abonat.setIdMembru(id);
-        istoric_abonat_service.update(istoric_abonat);
-          return "redirect:/membri";  
-      } catch (Exception ex) {
-          // log exception first, 
-          // then show error
-          String errorMessage = ex.getMessage();
-          logger.error(errorMessage);
-          model.addAttribute("errorMessage", errorMessage);
-          model.addAttribute("add", false);
-          return "membru-edit.html";
-      }
-  }
-
   @GetMapping(value = {"/membri/{id}/delete"})
   public String showDeleteMembruById(
           Model model, @PathVariable long id) {

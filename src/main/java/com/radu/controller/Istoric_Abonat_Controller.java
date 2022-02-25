@@ -8,6 +8,10 @@ import com.radu.repository.Istoric_Abonat_Repository;
 import com.radu.service.Istoric_Abonat_Service;
 import com.radu.exception.ResourceNotFoundException;
 import com.radu.model.Istoric_Abonat;
+import com.radu.model.Membru;
+import com.radu.model.Pachet;
+import com.radu.service.MembruService;
+import com.radu.service.PachetService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +33,12 @@ public class Istoric_Abonat_Controller {
 
   @Autowired
   private Istoric_Abonat_Service istoric_Abonat_Service;
+
+  @Autowired
+  private MembruService membruService;
+  
+  @Autowired
+  private PachetService pachetService;
   
   @GetMapping("/istoric_abonati")
   public String getistoric(Model model,
@@ -57,18 +67,19 @@ public class Istoric_Abonat_Controller {
       return "istoric_abonati.html";
   }
   
+/*
   @GetMapping(value = {"/istoric_abonati/add"})
   public String showAddIstoric(Model model) {
       Istoric_Abonat istoric_Abonat = new Istoric_Abonat();
       model.addAttribute("add", true);
       model.addAttribute("Istoric_Abonat", istoric_Abonat);
 
-      return "istoric_abonati-edit.html";
+      return "istoric-edit.html";
   }
 
   @PostMapping(value = "/istoric_abonati/add")
   public String addIstoric(Model model,
-          @ModelAttribute("istoric_abonat") Istoric_Abonat istoric_abonat) {        
+      @ModelAttribute("istoric_abonat") Istoric_Abonat istoric_abonat) {        
       try {
           Istoric_Abonat newistoric = istoric_Abonat_Service.save(istoric_abonat);
           return "redirect:/istoric_abonati";  
@@ -79,34 +90,46 @@ public class Istoric_Abonat_Controller {
           logger.error(errorMessage);
           model.addAttribute("errorMessage", errorMessage);
           model.addAttribute("add", true);
-          return "istoric_abonati-edit.html";
+          return "istoric-edit.html";
       }        
   }
-  
+*/
+
   //What is @RequestBody in spring boot?
   //Simply put, the @RequestBody annotation maps the HttpRequest body to a transfer or domain object, 
   // enabling automatic deserialization of the inbound HttpRequest body onto a Java object. 
   // Spring automatically deserializes the JSON into a Java type assuming an appropriate one is specified.
-		  
-  @GetMapping(value = {"/istoric_abonati/{id}/edit"})
-  public String showEditIstoric(Model model, @PathVariable long id) {
+	
+
+  @GetMapping(value = {"/istoric_abonat/{idmembru}/edit"})
+  public String showEditIstoric(Model model, @PathVariable long idmembru) {
+      Membru membru = null;
+      try {
+          membru = membruService.findById(idmembru);
+      } catch (ResourceNotFoundException ex) {
+          model.addAttribute("errorMessage", "Membru not found");
+      }
+  	  List<Pachet> pachete = pachetService.findAll();
       Istoric_Abonat istoric_abonat = null;
       try {
-        istoric_abonat = istoric_Abonat_Service.findById(id);
+         istoric_abonat = istoric_Abonat_Service.findLastByIdMembru(idmembru);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Istoric abonat not found");
       }
       model.addAttribute("add", false);
+      model.addAttribute("membru", membru);
+      model.addAttribute("pachete", pachete);
       model.addAttribute("istoric_abonat", istoric_abonat);
-      return "istoric_abonati-edit.html";
+      return "istoric-edit.html";
   }
 
-  @PostMapping(value = {"/istoric_abonati/{id}/edit"})
+ /*
+    @PostMapping(value = {"/istoric_abonat/{id}/edit"})
   public String updateistoric_abonat(Model model,
           @PathVariable long id,
           @ModelAttribute("istoric_abonat") Istoric_Abonat istoric_abonat) {        
       try {
-          istoric_abonat.setId(id);
+          istoric_abonat.setIdMembru(id);
           istoric_Abonat_Service.update(istoric_abonat);
           return "redirect:/istoric_abonati";  
       } catch (Exception ex) {
@@ -116,10 +139,11 @@ public class Istoric_Abonat_Controller {
           logger.error(errorMessage);
           model.addAttribute("errorMessage", errorMessage);
           model.addAttribute("add", false);
-          return "istoric_abonat-edit.html";
+          return "istoric-edit.html";
       }
   }
-
+*/
+  
   @GetMapping(value = {"/istoric_abonati/{id}/delete"})
   public String showDeleteistoricabonatById(
         Model model, @PathVariable long id) {

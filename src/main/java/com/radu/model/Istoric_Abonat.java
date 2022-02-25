@@ -12,28 +12,28 @@ public class Istoric_Abonat {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;	
-	private Long IdMembru;
-	private Long IdTipPachet;
-	private String NumeMembru;
-	private String DenumirePachet;
-	private Date DataStart;
-	private Date DataSfarsit;
-	private Integer Valoare;
-	private String Observatii;
+	private Long idmembru;
+	private Long idtippachet;
+	private String numemembru;
+	private String denumirepachet;
+	private Date datastart;
+	private Date datasfarsit;
+	private Integer valoare;
+	private String observatii;
 
 	public Istoric_Abonat() {
 	}
 
-	public Istoric_Abonat(Long id, Long IdMembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
+	public Istoric_Abonat(Long id, Long idmembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
 		this.id = id;
-		this.IdMembru = IdMembru;
-		this.IdTipPachet = IdTipPachet;
-		this.NumeMembru = NumeMembru;
-		this.DenumirePachet = DenumirePachet;
-		this.DataStart = DataStart;
-		this.DataSfarsit = DataSfarsit;
-		this.Valoare = Valoare;
-		this.Observatii = Observatii;
+		this.idmembru = idmembru;
+		this.idtippachet = IdTipPachet;
+		this.numemembru = NumeMembru;
+		this.denumirepachet = DenumirePachet;
+		this.datastart = DataStart;
+		this.datasfarsit = DataSfarsit;
+		this.valoare = Valoare;
+		this.observatii = Observatii;
 	}
 
 	public Long getId(){
@@ -45,66 +45,66 @@ public class Istoric_Abonat {
 	}
 
 	public Long getIdMembru() {
-		return this.IdMembru;
+		return this.idmembru;
 	}
 
 	public void setIdMembru(Long IdMembru) {
-		this.IdMembru = IdMembru;
+		this.idmembru = IdMembru;
 	}
 
 	public Long getIdTipPachet() {
-		return this.IdTipPachet;
+		return this.idtippachet;
 	}
 
 	public void setIdTipPachet(Long IdTipPachet) {
-		this.IdTipPachet = IdTipPachet;
+		this.idtippachet = IdTipPachet;
 	}
 
 	public String getNumeMembru() {
-		return this.NumeMembru;
+		return this.numemembru;
 	}
 
 	public void setNumeMembru(String NumeMembru) {
-		this.NumeMembru = NumeMembru;
+		this.numemembru = NumeMembru;
 	}
 
 	public String getDenumirePachet() {
-		return this.DenumirePachet;
+		return this.denumirepachet;
 	}
 
 	public void setDenumirePachet(String DenumirePachet) {
-		this.DenumirePachet = DenumirePachet;
+		this.denumirepachet = DenumirePachet;
 	}
 
 	public Date getDataStart() {
-		return this.DataStart;
+		return this.datastart;
 	}
 
 	public void setDataStart(Date DataStart) {
-		this.DataStart = DataStart;
+		this.datastart = DataStart;
 	}
 
 	public Date getDataSfarsit() {
-		return this.DataSfarsit;
+		return this.datasfarsit;
 	}
 
 	public void setDataSfarsit(Date DataSfarsit) {
-		this.DataSfarsit = DataSfarsit;
+		this.datasfarsit = DataSfarsit;
 	}
 
 	public Integer getValoare() {
-		return this.Valoare;
+		return this.valoare;
 	}
 
 	public void setValoare(Integer Valoare) {
-		this.Valoare = Valoare;
+		this.valoare = Valoare;
 	}
 
 	public String getObservatii() {
-		return this.Observatii;
+		return this.observatii;
 	}
 
 	public void setObservatii(String Observatii) {
-		this.Observatii = Observatii;
+		this.observatii = Observatii;
 	}
 }

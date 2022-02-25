@@ -42,6 +42,12 @@ public class PachetService {
         return Pachet;
     }
     
+    public List<Pachet> findAll() {
+        List<Pachet> Pachet = new ArrayList<>();
+        PachetRepository.findAll().forEach(Pachet::add);
+        return Pachet;
+    }
+
     public Pachet save(Pachet Pachet) throws BadResourceException, ResourceAlreadyExistsException {
         if (!StringUtils.hasLength(Pachet.getDenumire())) {
             if (Pachet.getId() != null && existsById(Pachet.getId())) { 

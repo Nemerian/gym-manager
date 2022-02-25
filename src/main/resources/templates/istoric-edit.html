@@ -28,50 +28,34 @@
                     <td>:</td>
                     <td th:utext="${istoric_abonat.id}">...</td>             
                 </tr>
-                <tr th:if="${istoric_abonat.idmembru}">
+                <tr>
                     <td>IdMembru</td>
                     <td>:</td>
-                    <td th:utext="${idmembru}">...</td>             
+                    <td><input type="text" field="*{idmembru}" /></td>              
                 </tr>
-                <tr th:if="${numemembru}">
+                <tr>
                     <td>NumeMembru</td>
                     <td>:</td>
-                    <td th:utext="${numemembru}">...</td>             
+                    <td><input type="text" field="*{numemembru}" /></td>              
                 </tr>
-<!--                
-<td><select name="games">
-  <option th:each="games : ${gamesList}" th:text="${games}"/>
-</select></tr>
-	private Long id;	
-	private Long IdMembru;
-	private Long IdTipPachet;
-	private String NumeMembru;
-	private String DenumirePachet;
-	private Date DataStart;
-	private Date DataSfarsit;
-	private Integer Valoare;
-	private String Observatii;                
--->
                 <td><select name="pachet">
                      <option th:each="pachet : ${pachete}" th:text="${pachet.denumire}"/>
                 </select></tr>
-<!--                
                 <tr>
                     <td>DataStart</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{istoric_abonat.datastart}" /></td>              
+                    <td><input type="text" field="*{datastart}" /></td>              
                 </tr>
                 <tr>
                     <td>DataSfarsit</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{istoric_abonat.datasfarsit}" /></td>              
+                    <td><input type="text" field="*{datasfarsit}" /></td>              
                 </tr>
                 <tr>
                     <td>Valoare</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{istoric_abonat.valoare}" /></td>              
+                    <td><input type="text" field="*{valoare}" /></td>              
                 </tr>
--->                
             </table>
             <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
         </form>
@@ -83,4 +67,3 @@
 <div th:replace="fragment ::html_footer"></div>
 </body>
 </html>
-

@@ -34,11 +34,11 @@ public class PachetController {
   @GetMapping("/pachete")
   public String getPachete(Model model,
       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
-  	  List<Pachet> pachet = pachetService.findAll(pageNumber, ROW_PER_PAGE);
+  	  List<Pachet> pachete = pachetService.findAll(pageNumber, ROW_PER_PAGE);
       long count = pachetService.count();
       boolean hasPrev = pageNumber > 1;
       boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
-      model.addAttribute("pachet", pachet);
+      model.addAttribute("pachete", pachete);
       model.addAttribute("hasPrev", hasPrev);
       model.addAttribute("prev", pageNumber - 1);
       model.addAttribute("hasNext", hasNext);
@@ -46,33 +46,6 @@ public class PachetController {
       return "pachete.html";
   }
   
-  // end::get-aggregate-root[]
-
-  /*
-  @GetMapping("/pachete")
-  CollectionModel<EntityModel<Membru>> all() {
-
-    List<EntityModel<Membru>> membri = repository.findAll().stream()
-        .map(membri -> EntityModel.of(membri,
-            linkTo(methodOn(MembruController.class).one(membri.getId())).withSelfRel(),
-            linkTo(methodOn(MembruController.class).all()).withRel("membri")))
-        .collect(Collectors.toList());
-
-    return CollectionModel.of(membri, linkTo(methodOn(MembruController.class).all()).withSelfRel());
-  }
-
-   
-  // Single item
-  
-  @GetMapping("/Pachet/{id}")
-  EntityModel<Pachet> one(@PathVariable Long id) {
-
-    Pachet Pachet = repository.getById(id);
-     
-    //return assembler.toModel(Pachet);
-  }
-*/
-
 @GetMapping(value = "/pachete/{id}")
 public String getPachetById(Model model, @PathVariable long id) {
     Pachet pachet = null;
@@ -141,10 +114,8 @@ public String addPachete(Model model,
       model.addAttribute("Pachet", pachet);
   
       return "pachet-edit.html";
-  
-  }
-  
-   
+    }
+    
   
   @PostMapping(value = {"/pachete/{id}/edit"})
   public String updateContact(Model model,

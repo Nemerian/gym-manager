@@ -43,7 +43,15 @@ public class Istoric_Abonat_Service {
         else return istoric_abonat;
     }
     
-    public List<Istoric_Abonat> findAll(int pageNumber, int rowPerPage) {
+	public Istoric_Abonat findLastByIdMembru(Long idMembru) throws ResourceNotFoundException {
+        Istoric_Abonat istoric_abonat = istoric_Abonat_Repository.findLastByIdMembru(idMembru);
+        if (istoric_abonat==null) {
+            throw new ResourceNotFoundException("Cannot find Contact with id: " + idMembru);
+        }
+        else return istoric_abonat;
+    }
+
+	public List<Istoric_Abonat> findAll(int pageNumber, int rowPerPage) {
         List<Istoric_Abonat> istoric_abonati = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage, 
                 Sort.by("id").ascending());
