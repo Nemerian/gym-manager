@@ -60,7 +60,7 @@ public class Istoric_Abonat_Service {
     }
     
     public Istoric_Abonat save(Istoric_Abonat istoric_abonat) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.hasLength(istoric_abonat.getNumeMembru())) {
+        if (StringUtils.hasLength(istoric_abonat.getNumeMembru())) {
             if (istoric_abonat.getId() != null && existsById(istoric_abonat.getId())) { 
                 throw new ResourceAlreadyExistsException("Istoric Abonati with id: " + istoric_abonat.getId() +
                         " already exists");
@@ -76,7 +76,7 @@ public class Istoric_Abonat_Service {
     
     public void update(Istoric_Abonat istoric_abonat) 
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.hasLength(istoric_abonat.getNumeMembru())) {
+        if (StringUtils.hasLength(istoric_abonat.getNumeMembru())) {
             if (!existsById(istoric_abonat.getId())) {
                 throw new ResourceNotFoundException("Cannot find Contact with id: " + istoric_abonat.getId());
             }

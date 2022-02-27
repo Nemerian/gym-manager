@@ -113,7 +113,7 @@ public class MembruController {
           @PathVariable long id,
           @ModelAttribute("membru") Membru membru) {        
       try {
-          membru.setId(id);
+        //  membru.setId(id);
           membruService.update(membru);
           return "redirect:/membri";  
       } catch (Exception ex) {
