@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import com.radu.repository.PachetRepository;
 import com.radu.service.PachetService;
 import com.radu.exception.ResourceNotFoundException;
+import com.radu.model.Membru;
 import com.radu.model.Pachet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,18 +59,16 @@ public String getPachetById(Model model, @PathVariable long id) {
     return "pachete.html";
 }
 
-@GetMapping(value = {"/pachet/add"})
+@GetMapping(value = {"/pachete/add"})
 public String showAddPachet(Model model) {
     Pachet pachet = new Pachet();
     model.addAttribute("add", true);
     model.addAttribute("pachet", pachet);
-
     return "pachet-edit.html";
 }
 
-@PostMapping(value = "/pachet/add")
-public String addPachete(Model model,
-        @ModelAttribute("pachet") Pachet pachet) {        
+@PostMapping(value = "/pachete/add")
+public String addPachete(Model model, @ModelAttribute("pachet") Pachet pachet) {        
     try {
         Pachet newPachet = pachetService.save(pachet);
         return "redirect:/pachete";  
@@ -124,7 +123,7 @@ public String addPachete(Model model,
       try {
         pachet.setId(id);
         pachetService.update(pachet);
-          return "redirect:/Pachet/" + String.valueOf(pachet.getId());
+          return "redirect:/pachete/" + String.valueOf(pachet.getId());
       } catch (Exception ex) {
           // log exception first, 
           // then show error

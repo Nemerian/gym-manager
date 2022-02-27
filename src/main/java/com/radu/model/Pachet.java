@@ -1,5 +1,6 @@
 package com.radu.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,13 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Pachet {
+public class Pachet implements Serializable {
+
+    private static final long serialVersionUID = -8582553475226281591L;
+    // private static final long serialVersionUID = -91969758749726312L;
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	private String denumire;
 	private Integer durata;
-	private Integer nsedinte;
+	private Integer nrsedinte;
 	private Date datastart;
 	private Date datasfarsit;
 	private Integer valoare;
@@ -27,7 +31,7 @@ public class Pachet {
 		this.id = id;
 		this.denumire = Denumire;
 		this.durata = Durata;
-		this.nsedinte = NrSedinte;
+		this.nrsedinte = NrSedinte;
 		this.datastart = DataStart;
 		this.datasfarsit = DataSfarsit;
 		this.valoare = Valoare;
@@ -60,11 +64,11 @@ public class Pachet {
 	}
 
 	public Integer getNrSedinte() {
-		return this.nsedinte;
+		return this.nrsedinte;
 	}
 
 	public void setNrSedinte(Integer NrSedinte) {
-		this.nsedinte = NrSedinte;
+		this.nrsedinte = NrSedinte;
 	}
 
 	public Date getDataStart() {

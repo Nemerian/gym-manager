@@ -73,8 +73,7 @@ public class MembruController {
   }
 
   @PostMapping(value = "/membri/add")
-  public String addMembru(Model model,
-          @ModelAttribute("membru") Membru membru) {        
+  public String addMembru(Model model, @ModelAttribute("membru") Membru membru) {        
       try {
           Membru newMembru = membruService.save(membru);
           return "redirect:/membri";  

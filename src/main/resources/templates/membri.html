@@ -37,10 +37,6 @@
 			<td th:text="${membru.email}">E-mail</td>	
     		<td th:text="${membru.telefon}">Telefon</td>
 			<td th:text="${membru.data}">Data inscriere</td>
-			<!--
-			<td th:text="${pachet.denumire}">Pachet</td>
-			<td th:text="${pachet.datasfarsit}">Data expirare</td>
-			-->
             <td><a th:href="@{istoric_abonat/{idmembru}/edit(idmembru=${membru.id})}"  class="btn btn-danger" role="button">Modificare pachet</a></td>			
 			<!-- <td><a href="/@{istoric_abonat/{id}/edit(id=${membru.id})" class="btn btn-danger" role="button">Modificare pachet</td> -->
 			<td><a th:href="@{membri/{id}/edit(id=${membru.id})}">Edit</a></td>

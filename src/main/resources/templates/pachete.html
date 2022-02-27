@@ -12,7 +12,7 @@
 <body>
 <div th:replace="fragment ::html_header"></div>
 <div class="table-responsive">
-    <h1 align="center" style="margin-top: 50px;">Lista pachete <a href="/pachet/add" class="btn btn-danger" role="button">Adauga pachet</a> </h1>
+    <h1 align="center" style="margin-top: 50px;">Lista pachete <a href="/pachete/add" class="btn btn-danger" role="button">Adauga pachet</a> </h1>
 	<table  class="table table-striped"  align="center" cellspacing="1" cellpadding="1" border="1" >
 	    <thead class="thead-dark">
     	<tr>
@@ -30,10 +30,12 @@
 		<tr th:each="pachet : ${pachete}">
     		<td th:text="${pachet.id}">Id</td>	
     		<td th:text="${pachet.denumire}">Denumire</td>	
-    		<td th:text="${pachet.nsedinte}">nSedinte</td> 
-			<td th:text="${pachet.datastart}">DataStart</td>	
-			<td th:text="${pachet.datasfarsit}">DataSfarsit</td>	
-    		<td th:text="${pachet.valoare}">Valoare</td>
+    		<td th:value="${pachet.nrsedinte}">NrSedinte</td> 
+<!--    		
+			<td th:field="${pachet.datastart}">DataStart</td>	
+			<td th:field="${pachet.datasfarsit}">DataSfarsit</td>
+-->				
+    		<td th:text="${#numbers.formatDecimal($pachet.valoare,0,0)}">Valoare</td>
 			<td th:text="${pachet.observatii}">Observatii</td>	
 			<td><a th:href="@{Pachete/{id}/edit(id=${pachet.id})}">Edit</a></td>
 			<td><a th:href="@{Pachete/{id}/delete(id=${pachet.id})}">Delete</a></td>
