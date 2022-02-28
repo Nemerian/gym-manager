@@ -1,6 +1,6 @@
 package com.radu.service;
  
-import com.radu.repository.PachetRepository;
+import com.radu.repository.Pachet_Repository;
 import com.radu.exception.BadResourceException;
 import com.radu.exception.ResourceAlreadyExistsException;
 import com.radu.exception.ResourceNotFoundException;
@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
  
 @Service
-public class PachetService {
+public class Pachet_Service {
 
    
     @Autowired
-    private PachetRepository PachetRepository;
+    private Pachet_Repository Pachet_Repository;
     
     private boolean existsById(Long id) {
-        return PachetRepository.existsById(id);
+        return Pachet_Repository.existsById(id);
     }
     
     public Pachet findById(Long id) throws ResourceNotFoundException {
-        Pachet Pachet = PachetRepository.findById(id).orElse(null);
+        Pachet Pachet = Pachet_Repository.findById(id).orElse(null);
         if (Pachet==null) {
             throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
         }
@@ -38,13 +38,13 @@ public class PachetService {
         List<Pachet> Pachet = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage, 
                 Sort.by("id").ascending());
-        PachetRepository.findAll(sortedByIdAsc).forEach(Pachet::add);
+        Pachet_Repository.findAll(sortedByIdAsc).forEach(Pachet::add);
         return Pachet;
     }
     
     public List<Pachet> findAll() {
         List<Pachet> Pachet = new ArrayList<>();
-        PachetRepository.findAll().forEach(Pachet::add);
+        Pachet_Repository.findAll().forEach(Pachet::add);
         return Pachet;
     }
 
@@ -54,7 +54,7 @@ public class PachetService {
                 throw new ResourceAlreadyExistsException("Pachet with id: " + Pachet.getId() +
                         " already exists");
             }
-            return  PachetRepository.save(Pachet);
+            return  Pachet_Repository.save(Pachet);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save Pachet");
@@ -69,7 +69,7 @@ public class PachetService {
             if (!existsById(Pachet.getId())) {
                 throw new ResourceNotFoundException("Cannot find Contact with id: " + Pachet.getId());
             }
-             PachetRepository.save(Pachet);
+             Pachet_Repository.save(Pachet);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save Pachet");
@@ -83,11 +83,11 @@ public class PachetService {
             throw new ResourceNotFoundException("Cannot find Pachet with id: " + id);
         }
         else {
-            PachetRepository.deleteById(id);
+            Pachet_Repository.deleteById(id);
         }
     }
     
     public Long count() {
-        return PachetRepository.count();
+        return Pachet_Repository.count();
     }
 }

@@ -20,13 +20,13 @@
         <h1 th:text="${add} ? 'Adauga un Pachet:' : 'Edit un Pachet:'" />
         <a th:href="@{/membri}">Back to Membru List</a>
         <br/><br/>
-        <form th:action="${add} ? @{/istoric_abonat/add} : @{/istoric_abonat/{id}/edit(id=${membru.id})}"
-            th:object="${istoric_abonat}" method="POST">
+        <form th:action="${add} ? @{/istoric/add} : @{/istoric/{id}/edit(id=${membru.id})}"
+            th:object="${istoric}" method="POST">
             <table border="0">
-                <tr th:if="${istoric_abonat.id}">
+                <tr th:if="${istoric.id}">
                     <td>ID</td>
                     <td>:</td>
-                    <td th:utext="${istoric_abonat.id}">...</td>             
+                    <td th:utext="${istoric.id}">...</td>             
                 </tr>
                 <tr>
                     <td>IdMembru</td>

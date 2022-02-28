@@ -4,13 +4,17 @@
 <meta charset="ISO-8859-1">
 <title></title>
 </head>
-<body>
-<div th:replace="fragment ::html_header"></div>
-<div class="container">
-<h1 align="center" style="margin-top: 50px;">Body Section</h1>
-<p align="center">Add dynamic contents...</p>   
-   <p align="center">Add dynamic contents...</p>
-<p align="center">Add dynamic contents...</p>   
-<footer style="position:fixed" th:replace="fragment ::html_footer"></footer>
+
+<body class="nav-md">
+   <div class="container body">
+      <div class="main_container">
+         <div th:replace="fragment ::html_header"></div>
+         <h1 align="center" style="margin-top: 50px;">Body Section</h1>
+         <p align="center">Add dynamic contents...</p>   
+            <p align="center">Add dynamic contents...</p>
+         <p align="center">Add dynamic contents...</p>   
+      </div>
+      <footer style="position:fixed" th:replace="fragment ::html_footer"></footer>
+   </div>
 </body>
 </html>

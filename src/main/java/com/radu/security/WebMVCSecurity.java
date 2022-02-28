@@ -25,9 +25,10 @@ public class WebMVCSecurity extends WebSecurityConfigurerAdapter {
         super();
     }
 
+    public String username="user1";
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user1").password("{noop}pass1").authorities("ROLE_USER");
+        auth.inMemoryAuthentication().withUser(username).password("{noop}pass1").authorities("ROLE_USER");
     }
 
 /*

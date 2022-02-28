@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.radu.repository.MembruRepository;
-import com.radu.service.Istoric_Abonat_Service;
-import com.radu.service.MembruService;
+import com.radu.repository.Membru_Repository;
+import com.radu.service.Membru_Service;
 import com.radu.exception.ResourceNotFoundException;
-import com.radu.model.Istoric_Abonat;
 import com.radu.model.Membru;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +20,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 //@RestController
 @Controller
-public class MembruController {
+public class Membru_Controller {
 
-  private final MembruRepository repository = null;
+  private final Membru_Repository repository = null;
     
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
   
   private final int ROW_PER_PAGE = 5;
   
   @Autowired
-  private MembruService membruService;
-  
-  @Autowired
-  private Istoric_Abonat_Service istoric_abonat_service;
+  private Membru_Service membru_Service;
   
   @GetMapping("/membri")
   public String getMembri(Model model,
 		@RequestParam(value = "page", defaultValue = "1") int pageNumber) {
-		List<Membru> membri = membruService.findAll(pageNumber, ROW_PER_PAGE);
-		long count = membruService.count();
+		List<Membru> membri = membru_Service.findAll(pageNumber, ROW_PER_PAGE);
+		long count = membru_Service.count();
 		boolean hasPrev = pageNumber > 1;
 		boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 		model.addAttribute("membri", membri);
@@ -55,7 +50,7 @@ public class MembruController {
   public String getMembruById(Model model, @PathVariable long id) {
       Membru membru = null;
       try {
-        membru = membruService.findById(id);
+        membru = membru_Service.findById(id);
       } catch (ResourceNotFoundException ex) {
         model.addAttribute("errorMessage", "Membru not found");
       }
@@ -76,7 +71,7 @@ public class MembruController {
   public String addMembru(Model model,
           @ModelAttribute("membru") Membru membru) {        
       try {
-          Membru newMembru = membruService.save(membru);
+          Membru newMembru = membru_Service.save(membru);
           return "redirect:/membri";  
       } catch (Exception ex) {
           // log exception first, 
@@ -99,7 +94,7 @@ public class MembruController {
   public String showEditMembru(Model model, @PathVariable long id) {
       Membru membru = null;
       try {
-          membru = membruService.findById(id);
+          membru = membru_Service.findById(id);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Membru not found");
       }
@@ -113,8 +108,7 @@ public class MembruController {
           @PathVariable long id,
           @ModelAttribute("membru") Membru membru) {        
       try {
-        //  membru.setId(id);
-          membruService.update(membru);
+          membru_Service.update(membru);
           return "redirect:/membri";  
       } catch (Exception ex) {
           // log exception first, 
@@ -132,14 +126,14 @@ public class MembruController {
           Model model, @PathVariable long id) {
       Membru membru = null;
       try {
-          membru = membruService.findById(id);
+          membru = membru_Service.findById(id);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Membru not found");
       }
       model.addAttribute("allowDelete", true);
       model.addAttribute("membru", membru);
       try {
-          membruService.deleteById(id);
+          membru_Service.deleteById(id);
           return "redirect:/membri";
       } catch (ResourceNotFoundException ex) {
           String errorMessage = ex.getMessage();

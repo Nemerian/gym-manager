@@ -6,7 +6,7 @@ import com.radu.model.Pachet;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PachetRepository extends JpaRepository<Pachet, Long> {
+public interface Pachet_Repository extends JpaRepository<Pachet, Long> {
 
 	//List<Pachet> findAll();
 }

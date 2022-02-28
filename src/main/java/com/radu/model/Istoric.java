@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Istoric_Abonat {
+public class Istoric {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;	
@@ -21,10 +21,10 @@ public class Istoric_Abonat {
 	private Integer valoare;
 	private String observatii;
 
-	public Istoric_Abonat() {
+	public Istoric() {
 	}
 
-	public Istoric_Abonat(Long id, Long idmembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
+	public Istoric(Long id, Long idmembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
 		this.id = id;
 		this.idmembru = idmembru;
 		this.idtippachet = IdTipPachet;

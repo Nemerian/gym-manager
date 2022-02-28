@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /* import com.radu.utils.StudentUtils; */
 
 @Controller
-public class FragmentsController {
+public class Fragments_Controller {
 //	private final int ROW_PER_PAGE = 5;
 
     @GetMapping("/fragments")

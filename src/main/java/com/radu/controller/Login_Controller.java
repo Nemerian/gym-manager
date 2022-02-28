@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LoginController {
+public class Login_Controller {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showLoginPage(ModelMap model) {

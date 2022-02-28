@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.radu.repository.PachetRepository;
-import com.radu.service.PachetService;
+import com.radu.repository.Pachet_Repository;
+import com.radu.service.Pachet_Service;
 import com.radu.exception.ResourceNotFoundException;
 import com.radu.model.Pachet;
 
@@ -20,22 +20,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 //@RestController
 @Controller
-public class PachetController {
+public class Pachet_Controller {
 
-  private final PachetRepository repository = null;
+  private final Pachet_Repository repository = null;
   
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   private final int ROW_PER_PAGE = 5;
 
   @Autowired
-  private PachetService pachetService;
+  private Pachet_Service pachet_Service;
  
   @GetMapping("/pachete")
   public String getPachete(Model model,
       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
-  	  List<Pachet> pachete = pachetService.findAll(pageNumber, ROW_PER_PAGE);
-      long count = pachetService.count();
+  	  List<Pachet> pachete = pachet_Service.findAll(pageNumber, ROW_PER_PAGE);
+      long count = pachet_Service.count();
       boolean hasPrev = pageNumber > 1;
       boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
       model.addAttribute("pachete", pachete);
@@ -50,7 +50,7 @@ public class PachetController {
 public String getPachetById(Model model, @PathVariable long id) {
     Pachet pachet = null;
     try {
-      pachet = pachetService.findById(id);
+      pachet = pachet_Service.findById(id);
     } catch (ResourceNotFoundException ex) {
       model.addAttribute("errorMessage", "Pachet not found");
     }
@@ -71,7 +71,7 @@ public String showAddPachet(Model model) {
 public String addPachete(Model model,
         @ModelAttribute("pachet") Pachet pachet) {        
     try {
-        Pachet newPachet = pachetService.save(pachet);
+        Pachet newPachet = pachet_Service.save(pachet);
         return "redirect:/pachete";  
     } catch (Exception ex) {
         // log exception first, 
@@ -104,7 +104,7 @@ public String addPachete(Model model,
   public String showEditPachet(Model model, @PathVariable long id) {
       Pachet pachet = null;
       try {
-          pachet = pachetService.findById(id);
+          pachet = pachet_Service.findById(id);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Contact not found");
       }
@@ -123,7 +123,7 @@ public String addPachete(Model model,
           @ModelAttribute("Pachet") Pachet pachet) {        
       try {
         pachet.setId(id);
-        pachetService.update(pachet);
+        pachet_Service.update(pachet);
           return "redirect:/Pachet/" + String.valueOf(pachet.getId());
       } catch (Exception ex) {
           // log exception first, 
@@ -141,14 +141,14 @@ public String addPachete(Model model,
           Model model, @PathVariable long id) {
       Pachet pachet = null;
       try {
-        pachet = pachetService.findById(id);
+        pachet = pachet_Service.findById(id);
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Pachet not found");
       }
       model.addAttribute("allowDelete", true);
       model.addAttribute("pachet", pachet);
       try {
-          pachetService.deleteById(id);
+          pachet_Service.deleteById(id);
           return "redirect:/pachete";
       } catch (ResourceNotFoundException ex) {
           String errorMessage = ex.getMessage();

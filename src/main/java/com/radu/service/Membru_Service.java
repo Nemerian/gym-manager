@@ -1,6 +1,6 @@
 package com.radu.service;
  
-import com.radu.repository.MembruRepository;
+import com.radu.repository.Membru_Repository;
 import com.radu.exception.BadResourceException;
 import com.radu.exception.ResourceAlreadyExistsException;
 import com.radu.exception.ResourceNotFoundException;
@@ -16,18 +16,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
  
 @Service
-public class MembruService {
+public class Membru_Service {
 
    
     @Autowired
-    private MembruRepository membruRepository;
+    private Membru_Repository membru_Repository;
     
     private boolean existsById(Long id) {
-        return membruRepository.existsById(id);
+        return membru_Repository.existsById(id);
     }
     
     public Membru findById(Long id) throws ResourceNotFoundException {
-        Membru membru = membruRepository.findById(id).orElse(null);
+        Membru membru = membru_Repository.findById(id).orElse(null);
         if (membru==null) {
             throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
         }
@@ -38,7 +38,7 @@ public class MembruService {
         List<Membru> membri = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage, 
                 Sort.by("id").ascending());
-        membruRepository.findAll(sortedByIdAsc).forEach(membri::add);
+        membru_Repository.findAll(sortedByIdAsc).forEach(membri::add);
         return  membri;
     }
     
@@ -48,7 +48,7 @@ public class MembruService {
                 throw new ResourceAlreadyExistsException("Membru with id: " +  membru.getId() +
                         " already exists");
             }
-            return membruRepository.save(membru);
+            return membru_Repository.save(membru);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save membru");
@@ -63,7 +63,7 @@ public class MembruService {
             if (!existsById(membru.getId())) {
                 throw new ResourceNotFoundException("Cannot find Membru with id: "+ membru.getId());
             }
-            membruRepository.save(membru);
+            membru_Repository.save(membru);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save membru");
@@ -77,11 +77,11 @@ public class MembruService {
             throw new ResourceNotFoundException("Cannot find membru with id: " + id);
         }
         else {
-            membruRepository.deleteById(id);
+            membru_Repository.deleteById(id);
         }
     }
     
     public Long count() {
-        return membruRepository.count();
+        return membru_Repository.count();
     }
 }
