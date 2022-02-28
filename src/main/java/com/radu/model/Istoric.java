@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class Istoric {
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	private Long idmembru;
 	private Long idtippachet;

@@ -20,7 +20,7 @@
         <h1 th:text="${add} ? 'Create a Pachet:' : 'Edit a Pachet:'" />
         <a th:href="@{/pachete}">Back to Pachet List</a>
         <br/><br/>
-        <form th:action="${add} ? @{/pachet/add} : @{/pachet/{id}/edit(id=${Pachet.id})}"
+        <form th:action="${add} ? @{/pachete/add} : @{/pachete/{id}/edit(id=${Pachet.id})}"
               th:object="${pachet}" method="POST">
             <table border="0">
                 <tr th:if="${pachet.id}">
@@ -31,37 +31,40 @@
                 <tr>
                     <td>Denumire</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{Denumire}" /></td>              
+                    <td><input type="text" th:field="*{denumire}" /></td>              
                 </tr>
                 <tr>
-                    <td>Durata</td>
+                    <td>Durata(Zile)</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{Durata}" /></td>              
+                    <td><input type="text" th:field="*{durata}" /></td>              
                 </tr>
+<!--                
                 <tr>
                     <td>NrSedinte</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{NrSedinte}" /></td>              
+                    <td><input type="text" th:field="${pachet.nrsedinte}" /></td>              
                 </tr>
+
                 <tr>
                     <td>Data Start</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{DataStart}" /></td>              
+                    <td><input type="date" th:field="*{datastart}"  /></td>              
                 </tr>
                 <tr>
                     <td>Data Sfarsit</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{DataSfarsit}" /></td>              
+                    <td><input type="date" th:field="*{datasfarsit}" /></td>              
                 </tr>
+-->
                 <tr>
                     <td>Valoare</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{Valoare}" /></td>              
+                    <td><input type="text" th:field="*{valoare}" /></td>              
                 </tr>
                 <tr>
                     <td>Observatii</td>
                     <td>:</td>
-                    <td><input type="text" th:field="*{Observatii}" /></td>              
+                    <td><input type="text" th:field="*{observatii}" /></td>              
                 </tr>
             </table>
             <input type="submit" th:value="${add} ? 'Create' : 'Update'" />

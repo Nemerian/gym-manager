@@ -20,7 +20,7 @@
         <h1 th:text="${add} ? 'Create a Pachet:' : 'Edit a Pachet:'" />
         <a th:href="@{/pachete}">Back to Pachet List</a>
         <br/><br/>
-        <form th:action="${add} ? @{/pachet/add} : @{/pachet/{id}/edit(id=${Pachet.id})}"
+        <form th:action="${add} ? @{/pachete/add} : @{/pachete/{id}/edit(id=${Pachet.id})}"
               th:object="${pachet}" method="POST">
             <table border="0">
                 <tr th:if="${pachet.id}">
