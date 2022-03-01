@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head th:replace="fragment ::html_headtag">
+    <meta charset="ISO-8859-1">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+     <title>Istoric Abonat</title>
+</head>
+<body>
+  <div th:replace="fragment ::html_header"></div>
+  <div>
+        <meta charset="UTF-8" />
+        <title th:text="${add} ? 'Adauga un Pachet' : 'Edit un Pachet'" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1 th:text="${add} ? 'Adauga un Pachet:' : 'Edit un Pachet:'" />
+        <a th:href="@{/membri}">Back to Membru List</a>
+        <br/><br/>
+        <form th:action="${add} ? @{/membri/istoric/add} : @{/membri/{id}/istoric/edit(id=${membru.id})}"
+            th:object="${istoric}" method="POST">
+            <table border="0">
+                <tr>
+                    <td>IdMembru</td>
+                    <td>:</td>
+                    <td th:text="${istoric.idmembru}">...</td>	
+                </tr>
+                <tr>
+                    <td>NumeMembru</td>
+                    <td>:</td>
+                    <td th:text="${istoric.numemembru}">...</td>	
+                </tr>
+                <td><select name="pachet">
+                    <!-- <td>Selectati Pachet</td>  -->
+                     <option th:each="pachet : ${pachete}" th:text="${pachet.denumire}"/>
+                </select></tr>
+                <tr>
+                    <td>DataStart</td>
+                    <td>:</td>
+                    <td><input type="date" th:value="${datastart}" /></td>              
+                </tr>
+                <tr>
+                    <td>DataSfarsit</td>
+                    <td>:</td>
+                    <td><input type="date" th:value="${datasfarsit}" /></td>              
+                </tr>
+                <tr>
+                    <td>Valoare</td>
+                    <td>:</td>
+                    <td><input type="text" field="*{valoare}" /></td>              
+                </tr>
+            </table>
+            <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+        </form>
+        <br/>
+        <!-- Check if errorMessage is not null and not empty -->       
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />       
+    </body>
+</div>
+<div th:replace="fragment ::html_footer"></div>
+</body>
+</html>

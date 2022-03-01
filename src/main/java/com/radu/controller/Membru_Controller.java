@@ -5,9 +5,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.radu.repository.Membru_Repository;
+import com.radu.service.Istoric_Service;
 import com.radu.service.Membru_Service;
+import com.radu.service.Pachet_Service;
 import com.radu.exception.ResourceNotFoundException;
+import com.radu.model.Istoric;
 import com.radu.model.Membru;
+import com.radu.model.Pachet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +35,12 @@ public class Membru_Controller {
   @Autowired
   private Membru_Service membru_Service;
   
+  @Autowired
+  private Istoric_Service istoric_Service;
+
+  @Autowired
+  private Pachet_Service pachet_Service;
+    
   @GetMapping("/membri")
   public String getMembri(Model model,
 		@RequestParam(value = "page", defaultValue = "1") int pageNumber) {
@@ -122,7 +132,7 @@ public class Membru_Controller {
 
   @GetMapping(value = {"/membri/{id}/delete"})
   public String showDeleteMembruById(
-          Model model, @PathVariable long id) {
+      Model model, @PathVariable long id) {
       Membru membru = null;
       try {
           membru = membru_Service.findById(id);
@@ -142,19 +152,48 @@ public class Membru_Controller {
       return "redirect:/membri";
   }
 
-  /*
-  @PostMapping(value = {"/membri/{id}/delete"})
-  public String deleteMembruById(
-          Model model, @PathVariable long id) {
+  @GetMapping(value = {"/membri/{idmembru}/istoric/edit"})
+  public String showEditIstoric(Model model, @PathVariable long idmembru) {
+      Membru membru = null;
       try {
-          membruService.deleteById(id);
-          return "redirect:/membri";
+          membru = membru_Service.findById(idmembru);
       } catch (ResourceNotFoundException ex) {
+          model.addAttribute("errorMessage", "Membru not found");
+      }
+  	  List<Pachet> pachete = pachet_Service.findAll();
+      Istoric istoric = null;
+      try {
+         istoric = istoric_Service.findLastByIdMembru(idmembru);
+      } catch (ResourceNotFoundException ex) {
+          model.addAttribute("errorMessage", "Istoric not found");
+      }
+      if(istoric==null) {
+    	istoric=new Istoric();  
+      }
+      istoric.setIdmembru(idmembru);
+      istoric.setNumemembru(membru.getNume()+' '+membru.getPrenume());
+      model.addAttribute("add", true);
+      model.addAttribute("membru", membru);
+      model.addAttribute("pachete", pachete);
+      model.addAttribute("istoric", istoric);
+      return "membru-istoric-edit.html";
+  }
+  
+  @PostMapping(value = "/membri/istoric/add")
+  public String addIstoric(Model model,
+      @ModelAttribute("istoric") Istoric istoric) {        
+      try {
+          Istoric newistoric = istoric_Service.save(istoric);
+          return "redirect:/membri";  
+      } catch (Exception ex) {
+          // log exception first, 
+          // then show error
           String errorMessage = ex.getMessage();
           logger.error(errorMessage);
           model.addAttribute("errorMessage", errorMessage);
-          return "membru";
-      }
+          model.addAttribute("add", true);
+          return "membru-istoric-edit.html";
+      }        
   }
-  */
+  
 }

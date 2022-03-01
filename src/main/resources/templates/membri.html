@@ -42,7 +42,7 @@
 		   	<td th:text="${denumirepachet}">Pachet</td>
 			<td th:text="${membru.datastart}">De_La</td>
 			<td th:text="${membru.datasfarsit}">Pana_La</td>
-            <td><a th:href="@{istoric/{idmembru}/edit(idmembru=${membru.id})}"  class="btn btn-danger" role="button">Modificare pachet</a></td>			
+            <td><a th:href="@{membri/{id}/istoric/edit(id=${membru.id})}"  class="btn btn-danger" role="button">Actualizare pachet</a></td>			
 			<!-- <td><a href="/@{istoric/{id}/edit(id=${membru.id})" class="btn btn-danger" role="button">Modificare pachet</td> -->
 			<td><a th:href="@{membri/{id}/edit(id=${membru.id})}">Edit</a></td>
 			<td><a th:href="@{membri/{id}/delete(id=${membru.id})}">Delete</a></td>
