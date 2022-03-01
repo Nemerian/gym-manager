@@ -20,14 +20,16 @@
         <h1 th:text="${add} ? 'Create a Pachet:' : 'Edit a Pachet:'" />
         <a th:href="@{/pachete}">Back to Pachet List</a>
         <br/><br/>
-        <form th:action="${add} ? @{/pachete/add} : @{/pachete/{id}/edit(id=${Pachet.id})}"
+        <form th:action="${add} ? @{/pachete/add} : @{/pachete/{id}/edit(id=${pachet.id})}"
               th:object="${pachet}" method="POST">
             <table border="0">
+<!--
                 <tr th:if="${pachet.id}">
                     <td>ID</td>
                     <td>:</td>
                     <td th:utext="${pachet.id}">...</td>             
                 </tr>
+-->
                 <tr>
                     <td>Denumire</td>
                     <td>:</td>
@@ -38,13 +40,12 @@
                     <td>:</td>
                     <td><input type="text" th:field="*{durata}" /></td>              
                 </tr>
-<!--                
                 <tr>
-                    <td>NrSedinte</td>
+                    <td>Nrsedinte</td>
                     <td>:</td>
                     <td><input type="text" th:field="${pachet.nrsedinte}" /></td>              
                 </tr>
-
+<!--
                 <tr>
                     <td>Data Start</td>
                     <td>:</td>

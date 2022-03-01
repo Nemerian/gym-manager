@@ -1,6 +1,6 @@
 package com.radu.model;
 
-import java.io.Serializable;
+import java.util.PropertyPermission;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,10 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Pachet implements Serializable {
-
-    private static final long serialVersionUID = -8582553475226281591L;
-    // private static final long serialVersionUID = -91969758749726312L;
+public class Pachet {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
@@ -27,17 +24,16 @@ public class Pachet implements Serializable {
 	public Pachet(){
 	}
 	
-	public Pachet(Long id, String Denumire, Integer Durata, Integer NrSedinte, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
+	public Pachet(Long id, String Denumire, Integer Durata, Integer Nrsedinte, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
 		this.id = id;
 		this.denumire = Denumire;
 		this.durata = Durata;
-		this.nrsedinte = NrSedinte;
+		this.nrsedinte = Nrsedinte;
 		this.datastart = DataStart;
 		this.datasfarsit = DataSfarsit;
 		this.valoare = Valoare;
 		this.observatii = Observatii;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -63,27 +59,27 @@ public class Pachet implements Serializable {
 		this.durata = Durata;
 	}
 
-	public Integer getNrSedinte() {
+	public Integer getNrsedinte() {
 		return this.nrsedinte;
 	}
 
-	public void setNrSedinte(Integer NrSedinte) {
-		this.nrsedinte = NrSedinte;
+	public void setNrsedinte(Integer Nrsedinte) {
+		this.nrsedinte = Nrsedinte;
 	}
 
-	public Date getDataStart() {
+	public Date getDatastart() {
 		return this.datastart;
 	}
 
-	public void setDataStart(Date DataStart) {
+	public void setDatastart(Date DataStart) {
 		this.datastart = DataStart;
 	}
 
-	public Date getDataSfarsit() {
+	public Date getDatasfarsit() {
 		return this.datasfarsit;
 	}
 
-	public void setDataSfarsit(Date DataSfarsit) {
+	public void setDatasfarsit(Date DataSfarsit) {
 		this.datasfarsit = DataSfarsit;
 	}
 

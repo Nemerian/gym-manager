@@ -105,16 +105,12 @@ public String addPachete(Model model, @ModelAttribute("pachet") Pachet pachet) {
       try {
           pachet = pachet_Service.findById(id);
       } catch (ResourceNotFoundException ex) {
-          model.addAttribute("errorMessage", "Contact not found");
+          model.addAttribute("errorMessage", "Pachet not found");
       }
-  
       model.addAttribute("add", false);
-  
-      model.addAttribute("Pachet", pachet);
-  
+      model.addAttribute("pachet", pachet);
       return "pachet-edit.html";
     }
-    
   
   @PostMapping(value = {"/pachete/{id}/edit"})
   public String updateContact(Model model,
@@ -123,7 +119,7 @@ public String addPachete(Model model, @ModelAttribute("pachet") Pachet pachet) {
       try {
         pachet.setId(id);
         pachet_Service.update(pachet);
-          return "redirect:/Pachet/" + String.valueOf(pachet.getId());
+          return "redirect:/pachete";
       } catch (Exception ex) {
           // log exception first, 
           // then show error
@@ -131,10 +127,10 @@ public String addPachete(Model model, @ModelAttribute("pachet") Pachet pachet) {
      //     logger.error(errorMessage);
           model.addAttribute("errorMessage", errorMessage);
           model.addAttribute("add", false);
-          return "Pachet-edit";
+          return "pachet-edit";
       }
   }
-
+  
   @GetMapping(value = {"/pachete/{id}/delete"})
   public String showDeletePachetById(
           Model model, @PathVariable long id) {

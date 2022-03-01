@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Istoric {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
+	@NotNull
 	private Long idmembru;
+	@NotNull
 	private Long idtippachet;
 	private String numemembru;
 	private String denumirepachet;
@@ -35,7 +38,6 @@ public class Istoric {
 		this.valoare = Valoare;
 		this.observatii = Observatii;
 	}
-
 	public Long getId(){
 		return id;
 	}
@@ -44,51 +46,50 @@ public class Istoric {
 		this.id = id;
 	}
 
-	public Long getIdMembru() {
+	public Long getIdmembru() {
 		return this.idmembru;
 	}
 
-	public void setIdMembru(Long IdMembru) {
+	public void setIdmembru(Long IdMembru) {
 		this.idmembru = IdMembru;
 	}
 
-	public Long getIdTipPachet() {
+	public Long getIdtippachet() {
 		return this.idtippachet;
 	}
 
-	public void setIdTipPachet(Long IdTipPachet) {
+	public void setIdtippachet(Long IdTipPachet) {
 		this.idtippachet = IdTipPachet;
 	}
-
-	public String getNumeMembru() {
+	public String getNumemembru() {
 		return this.numemembru;
 	}
 
-	public void setNumeMembru(String NumeMembru) {
+	public void setNumemembru(String NumeMembru) {
 		this.numemembru = NumeMembru;
 	}
 
-	public String getDenumirePachet() {
+	public String getDenumirepachet() {
 		return this.denumirepachet;
 	}
 
-	public void setDenumirePachet(String DenumirePachet) {
+	public void setDenumirepachet(String DenumirePachet) {
 		this.denumirepachet = DenumirePachet;
 	}
 
-	public Date getDataStart() {
+	public Date getDatastart() {
 		return this.datastart;
 	}
 
-	public void setDataStart(Date DataStart) {
+	public void setDatastart(Date DataStart) {
 		this.datastart = DataStart;
 	}
 
-	public Date getDataSfarsit() {
+	public Date getDatasfarsit() {
 		return this.datasfarsit;
 	}
 
-	public void setDataSfarsit(Date DataSfarsit) {
+	public void setDatasfarsit(Date DataSfarsit) {
 		this.datasfarsit = DataSfarsit;
 	}
 

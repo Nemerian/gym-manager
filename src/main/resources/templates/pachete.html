@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http:www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment ::html_headtag">
-    <meta charset="ISO-8859-1">
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet"
+   <title>Lista Membri</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <!-- Bootstrap CSS --> 
+     <link rel="stylesheet" type="text/css" media="all"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-     <title>Lista Membri</title>
 </head>
 <body>
 <div th:replace="fragment ::html_header"></div>
@@ -18,7 +19,7 @@
     	<tr>
 			<th style="width:5%">ID</th>
 			<th style="width:15%">Denumire</th>
-			<th style="width:20%">NrSedinte</th>
+			<th style="width:20%">Nrsedinte</th>
 			<th style="width:20%">DataStart</th>
 			<th style="width:10%">DataSfarsit</th>
 			<th style="width:10%">Valoare</th>
@@ -30,15 +31,18 @@
 		<tr th:each="pachet : ${pachete}">
     		<td th:text="${pachet.id}">Id</td>	
     		<td th:text="${pachet.denumire}">Denumire</td>	
-    		<td th:value="${pachet.nrsedinte}">NrSedinte</td> 
+            <td th:text="${pachet.nrsedinte}" class="number">30</td>    		
+            <td th:text="*{#calendars.format(datastart,'dd MMM yyyy')}">1 jan 2011</td>
+            <td th:text="*{#calendars.format(datasfarsit,'dd MMM yyyy')}">1 jan 2011</td>
+
 <!--    		
 			<td th:field="${pachet.datastart}">DataStart</td>	
 			<td th:field="${pachet.datasfarsit}">DataSfarsit</td>
 -->				
-    		<td th:text="${#numbers.formatDecimal($pachet.valoare,0,0)}">Valoare</td>
+            <td th:text="${pachet.valoare}" class="number">500</td>    		
 			<td th:text="${pachet.observatii}">Observatii</td>	
-			<td><a th:href="@{Pachete/{id}/edit(id=${pachet.id})}">Edit</a></td>
-			<td><a th:href="@{Pachete/{id}/delete(id=${pachet.id})}">Delete</a></td>
+			<td><a th:href="@{pachete/{id}/edit(id=${pachet.id})}">Edit</a></td>
+			<td><a th:href="@{pachete/{id}/delete(id=${pachet.id})}">Delete</a></td>
 		</tr> 
 	</table>
 </div>

@@ -18,16 +18,18 @@
     	<tr>
 			<th style="width:5%">ID</th>
 			<th style="width:10%">Nume</th>
-			<th style="width:15%">Prenume</th>
+			<th style="width:10%">Prenume</th>
 			<th style="width:10%">E-mail</th>
-			<th style="width:10%">Telefon</th>
-			<th style="width:10%">Data Inscriere</th>
+			<th style="width:5%">Telefon</th>
+			<th style="width:5%">Data Inscriere</th>
 			<th style="width:10%">Pachet</th>
-			<th style="width:10%">Data expirare</th>
+			<th style="width:5%">Data expirare</th>
+			<th style="width:10%">PachetCurent</th>
+            <th style="width:5%">De_La</th>
+            <th style="width:5%">Pana_La</th>
 			<th style="width:10%">Modificare pachet</th>
-			<th style="width:10%">Edit</th>
-			<th style="width:10%">Delete</th>
-			
+			<th style="width:5%">Edit</th>
+			<th style="width:5%">Delete</th>
 		</tr>
         </thead>		
 		<tr th:each="membru : ${membri}">
@@ -37,8 +39,9 @@
 			<td th:text="${membru.email}">E-mail</td>	
     		<td th:text="${membru.telefon}">Telefon</td>
 			<td th:text="${membru.data}">Data inscriere</td>
-			<td>Pachet</td>
-			<td>Data expirare</td>
+		   	<td th:text="${denumirepachet}">Pachet</td>
+			<td th:text="${membru.datastart}">De_La</td>
+			<td th:text="${membru.datasfarsit}">Pana_La</td>
             <td><a th:href="@{istoric/{idmembru}/edit(idmembru=${membru.id})}"  class="btn btn-danger" role="button">Modificare pachet</a></td>			
 			<!-- <td><a href="/@{istoric/{id}/edit(id=${membru.id})" class="btn btn-danger" role="button">Modificare pachet</td> -->
 			<td><a th:href="@{membri/{id}/edit(id=${membru.id})}">Edit</a></td>

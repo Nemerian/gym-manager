@@ -1,5 +1,6 @@
 package com.radu.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -16,12 +17,16 @@ public class Membru {
 	private String prenume;
 	private String email;
 	private String telefon;
-	private String data;
+	private Date data;
+	private String denumirepachet;
+	private Date datastart;
+	private Date datasfarsit;
 	
+/*	
 	public Membru() {
 	}
-	
-    public Membru(Long id, String nume, String prenume, String email, String telefon, String data) {
+
+    public Membru(Long id, String nume, String prenume, String email, String telefon, Date data) {
     	this.id=id;
     	this.nume=nume;
     	this.prenume=prenume;
@@ -29,7 +34,7 @@ public class Membru {
 		this.telefon=telefon;
     	this.data=data;		
 	}
-
+*/
     public Long getId() {
 		return id;
 	}
@@ -61,12 +66,32 @@ public class Membru {
 		this.prenume = prenume;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
-
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
+	}
+	
+	public String getDenumirepachet() {
+		return denumirepachet;
+	}
+	public void setDenumirepachet(String denumirepachet) {
+		this.denumirepachet = denumirepachet;
+	}
+
+	public Date getDatastart() {
+		return datastart;
+	}
+	public void setDatastart(Date datastart) {
+		this.datastart = datastart;
+	}
+
+	public Date getDatasfarsit() {
+		return datasfarsit;
+	}
+	public void setDatasfarsit(Date datasfarsit) {
+		this.datasfarsit = datasfarsit;
 	}
 
 	@Override
