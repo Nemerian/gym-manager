@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity // This tells Hibernate to make a table out of this class
 public class Pachet {
 	@Id 
@@ -16,24 +18,12 @@ public class Pachet {
 	private String denumire;
 	private Integer durata;
 	private Integer nrsedinte;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datastart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datasfarsit;
 	private Integer valoare;
 	private String observatii;
-
-	public Pachet(){
-	}
-	
-	public Pachet(Long id, String Denumire, Integer Durata, Integer Nrsedinte, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
-		this.id = id;
-		this.denumire = Denumire;
-		this.durata = Durata;
-		this.nrsedinte = Nrsedinte;
-		this.datastart = DataStart;
-		this.datasfarsit = DataSfarsit;
-		this.valoare = Valoare;
-		this.observatii = Observatii;
-	}
 
 	public Long getId() {
 		return id;

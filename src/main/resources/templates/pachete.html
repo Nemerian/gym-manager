@@ -31,14 +31,9 @@
 		<tr th:each="pachet : ${pachete}">
     		<td th:text="${pachet.id}">Id</td>	
     		<td th:text="${pachet.denumire}">Denumire</td>	
-            <td th:text="${pachet.nrsedinte}" class="number">30</td>    		
-            <td th:text="*{#calendars.format(datastart,'dd MMM yyyy')}">1 jan 2011</td>
-            <td th:text="*{#calendars.format(datasfarsit,'dd MMM yyyy')}">1 jan 2011</td>
-
-<!--    		
-			<td th:field="${pachet.datastart}">DataStart</td>	
-			<td th:field="${pachet.datasfarsit}">DataSfarsit</td>
--->				
+            <td th:text="${pachet.nrsedinte}" class="number">30</td>
+            <td th:text="${#calendars.format(pachet.datastart,'dd.MM.yyyy')}">1 jan 2011</td>
+            <td th:text="${#calendars.format(pachet.datasfarsit,'dd.MM.yyyy')}">1 jan 2011</td>
             <td th:text="${pachet.valoare}" class="number">500</td>    		
 			<td th:text="${pachet.observatii}">Observatii</td>	
 			<td><a th:href="@{pachete/{id}/edit(id=${pachet.id})}">Edit</a></td>

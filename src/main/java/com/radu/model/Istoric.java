@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity // This tells Hibernate to make a table out of this class
 public class Istoric {
 	@Id 
@@ -19,25 +21,13 @@ public class Istoric {
 	private Long idtippachet;
 	private String numemembru;
 	private String denumirepachet;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datastart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datasfarsit;
 	private Integer valoare;
 	private String observatii;
-
-	public Istoric() {
-	}
-
-	public Istoric(Long id, Long idmembru, Long IdTipPachet, String NumeMembru, String DenumirePachet, Date DataStart, Date DataSfarsit, Integer Valoare, String Observatii) {
-		this.id = id;
-		this.idmembru = idmembru;
-		this.idtippachet = IdTipPachet;
-		this.numemembru = NumeMembru;
-		this.denumirepachet = DenumirePachet;
-		this.datastart = DataStart;
-		this.datasfarsit = DataSfarsit;
-		this.valoare = Valoare;
-		this.observatii = Observatii;
-	}
+	
 	public Long getId(){
 		return id;
 	}
