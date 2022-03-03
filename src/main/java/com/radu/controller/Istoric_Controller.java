@@ -40,13 +40,15 @@ public class Istoric_Controller {
   private Pachet_Service pachet_Service;
   
   @GetMapping("/istoric")
-  public String getistoric(Model model,
+  public String getistoric(Model model, 
 		@RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 		List<Istoric> istoric = istoric_Service.findAll(pageNumber, ROW_PER_PAGE);
 		long count = istoric_Service.count();
 		boolean hasPrev = pageNumber > 1;
 		boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
+    List<Membru> membri = membru_Service.findAll();
 		model.addAttribute("istoric", istoric);
+    model.addAttribute("membri", membri);
 		model.addAttribute("hasPrev", hasPrev);
 		model.addAttribute("prev", pageNumber - 1);
 		model.addAttribute("hasNext", hasNext);

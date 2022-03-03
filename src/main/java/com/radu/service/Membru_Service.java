@@ -42,6 +42,12 @@ public class Membru_Service {
         return  membri;
     }
     
+    public List<Membru> findAll() {
+        List<Membru> Membru = new ArrayList<>();
+        membru_Repository.findAll().forEach(Membru::add);
+        return Membru;
+    }
+
     public Membru save(Membru membru) throws BadResourceException, ResourceAlreadyExistsException {
         if (StringUtils.hasLength(membru.getNume())) {
             if (membru.getId() != null && existsById(membru.getId())) { 

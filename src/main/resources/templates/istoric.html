@@ -1,86 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http:www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment ::html_headtag">
-    <meta charset="ISO-8859-1">
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet"
+   <title>Lista Membri</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <!-- Bootstrap CSS --> 
+     <link rel="stylesheet" type="text/css" media="all"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-     <title>Istoric Abonat</title>
 </head>
 <body>
-  <div th:replace="fragment ::html_header"></div>
-  <div>
-        <meta charset="UTF-8" />
-        <title th:text="${add} ? 'Adauga un Pachet' : 'Edit un Pachet'" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    </head>
-    <body>
-        <h1 th:text="${add} ? 'Adauga un Pachet:' : 'Edit un Pachet:'" />
-        <a th:href="@{/membri}">Back to Membru List</a>
-        <br/><br/>
-        <form th:action="${add} ? @{/istoric/add} : @{/istoric/{id}/edit(id=${membru.id})}"
-            th:object="${istoric}" method="POST">
-            <table border="0">
-                <tr th:if="${istoric.id}">
-                    <td>ID</td>
-                    <td>:</td>
-                    <td th:utext="${istoric.id}">...</td>             
-                </tr>
-                <tr th:if="${istoric.idmembru}">
-                    <td>IdMembru</td>
-                    <td>:</td>
-                    <td th:utext="${idmembru}">...</td>             
-                </tr>
-                <tr th:if="${numemembru}">
-                    <td>NumeMembru</td>
-                    <td>:</td>
-                    <td th:utext="${numemembru}">...</td>             
-                </tr>
-<!--                
-<td><select name="games">
-  <option th:each="games : ${gamesList}" th:text="${games}"/>
-</select></tr>
-	private Long id;	
-	private Long IdMembru;
-	private Long IdTipPachet;
-	private String NumeMembru;
-	private String DenumirePachet;
-	private Date DataStart;
-	private Date DataSfarsit;
-	private Integer Valoare;
-	private String Observatii;                
--->
-                <td><select name="pachet">
-                     <option th:each="pachet : ${pachete}" th:text="${pachet.denumire}"/>
-                </select></tr>
-<!--                
-                <tr>
-                    <td>DataStart</td>
-                    <td>:</td>
-                    <td><input type="text" th:field="*{istoric.datastart}" /></td>              
-                </tr>
-                <tr>
-                    <td>DataSfarsit</td>
-                    <td>:</td>
-                    <td><input type="text" th:field="*{istoric.datasfarsit}" /></td>              
-                </tr>
-                <tr>
-                    <td>Valoare</td>
-                    <td>:</td>
-                    <td><input type="text" th:field="*{istoric.valoare}" /></td>              
-                </tr>
--->                
-            </table>
-            <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
-        </form>
-        <br/>
-        <!-- Check if errorMessage is not null and not empty -->       
-        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />       
-    </body>
+<div th:replace="fragment ::html_header"></div>
+<div class="table-responsive">
+    <h1 align="center" style="margin-top: 50px;">Istoric</h1>
+	<table  class="table table-striped"  align="center" cellspacing="1" cellpadding="1" border="1" >
+	    <thead class="thead-dark">
+    	<tr>
+			<th style="width:5%">ID</th>
+			<th style="width:15%">Denumire</th>
+			<th style="width:20%">Nrsedinte</th>
+			<th style="width:20%">DataStart</th>
+			<th style="width:10%">DataSfarsit</th>
+			<th style="width:10%">Valoare</th>
+			<th style="width:10%">Observatii</th>
+			<th style="width:5%">Edit</th>
+			<th style="width:5%">Delete</th>
+		</tr>
+        </thead>	
+		<tr th:each="istoric : ${istorice}">
+    		<td th:text="${istoric.id}">Id</td>	
+    		<td th:text="${istoric.idmembru}">Denumire</td>	
+            <td th:text="${istoric.idtipabonament}" class="number">30</td>    		
+            <td th:text="${istoric.numemembru">1 jan 2011</td>
+            <td th:text="${istoric.denumireabonament">1 jan 2011</td>
+            <td th:field="${pachet.datastart}">DataStart</td>	
+			<td th:field="${istoric.datasfarsit}">DataSfarsit</td>
+            <td th:text="${istoric.valoare}" class="number">500</td>    		
+			<td th:text="${istoric.observatii}">Observatii</td>	
+		</tr> 
+	</table>
 </div>
 <div th:replace="fragment ::html_footer"></div>
 </body>
 </html>
-
