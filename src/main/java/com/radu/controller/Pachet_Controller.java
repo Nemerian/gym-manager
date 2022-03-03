@@ -107,6 +107,7 @@ public String addPachete(Model model, @ModelAttribute("pachet") Pachet pachet) {
       } catch (ResourceNotFoundException ex) {
           model.addAttribute("errorMessage", "Pachet not found");
       }
+  //    model.addAttribute("date_format", "dd.MM.yyyy");
       model.addAttribute("add", false);
       model.addAttribute("pachet", pachet);
       return "pachet-edit.html";

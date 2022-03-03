@@ -26,26 +26,44 @@
                 <tr>
                     <td>IdMembru</td>
                     <td>:</td>
-                    <td th:text="${istoric.idmembru}">...</td>	
+                    <td th:text="*{idmembru}">...</td>	
                 </tr>
                 <tr>
                     <td>NumeMembru</td>
                     <td>:</td>
-                    <td th:text="${istoric.numemembru}">...</td>	
+                    <td th:text="*{numemembru}">...</td>	
                 </tr>
-                <td><select name="pachet">
-                    <!-- <td>Selectati Pachet</td>  -->
-                     <option th:each="pachet : ${pachete}" th:text="${pachet.denumire}"/>
-                </select></tr>
+                <tr>
+                     <td>Selectati Pachet</td>
+                     <td>:</td>
+                     <td>
+                        <select name="pachet" > 
+                           <option th:each="pachet : ${pachete}" th:text="${pachet.id}"/>
+                         </select>
+                     </td>
+                </tr>
+<!-- 
+      <td><select name="pachet">   th:field="*{idtippachet}"
+          <!-- <td>Selectati Pachet</td>  -->
+          <option th:each="pachet : ${pachete}" th:text="${pachet.denumire}"/>
+      </select></tr>
+                               
+	pachet.denumire
+ <option th:each="user : ${allUsers}"
+         th:value="${user.id}"
+         th:selected="${lastselected eq user.id}"
+         th:text="${user.name}">
+ </option>                
+ -->
                 <tr>
                     <td>DataStart</td>
                     <td>:</td>
-                    <td><input type="date" th:value="${datastart}" /></td>              
+                    <td><input type="date" th:field="*{datastart}" /></td>              
                 </tr>
                 <tr>
                     <td>DataSfarsit</td>
                     <td>:</td>
-                    <td><input type="date" th:value="${datasfarsit}" /></td>              
+                    <td><input type="date" th:field="*{datasfarsit}" /></td>              
                 </tr>
                 <tr>
                     <td>Valoare</td>

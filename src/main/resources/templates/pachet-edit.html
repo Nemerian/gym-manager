@@ -7,6 +7,10 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+
+    <link th:rel="stylesheet" th:href="@{/assets/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>        
      <title>Lista Pachete</title>
 </head>
 <body>
@@ -23,13 +27,6 @@
         <form th:action="${add} ? @{/pachete/add} : @{/pachete/{id}/edit(id=${pachet.id})}"
               th:object="${pachet}" method="POST">
             <table border="0">
-<!--
-                <tr th:if="${pachet.id}">
-                    <td>ID</td>
-                    <td>:</td>
-                    <td th:utext="${pachet.id}">...</td>             
-                </tr>
--->
                 <tr>
                     <td>Denumire</td>
                     <td>:</td>
@@ -45,18 +42,16 @@
                     <td>:</td>
                     <td><input type="text" th:field="${pachet.nrsedinte}" /></td>              
                 </tr>
-<!--
                 <tr>
                     <td>Data Start</td>
                     <td>:</td>
-                    <td><input type="date" th:field="*{datastart}"  /></td>              
+                    <td><input type="date" th:field="*{datastart}" /></td>              
                 </tr>
                 <tr>
                     <td>Data Sfarsit</td>
                     <td>:</td>
                     <td><input type="date" th:field="*{datasfarsit}" /></td>              
                 </tr>
--->
                 <tr>
                     <td>Valoare</td>
                     <td>:</td>

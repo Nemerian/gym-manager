@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity // This tells Hibernate to make a table out of this class
 public class Membru {
 	@Id 
@@ -17,24 +19,14 @@ public class Membru {
 	private String prenume;
 	private String email;
 	private String telefon;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date data;
 	private String denumirepachet;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datastart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datasfarsit;
 	
-/*	
-	public Membru() {
-	}
-
-    public Membru(Long id, String nume, String prenume, String email, String telefon, Date data) {
-    	this.id=id;
-    	this.nume=nume;
-    	this.prenume=prenume;
-		this.email=email;
-		this.telefon=telefon;
-    	this.data=data;		
-	}
-*/
     public Long getId() {
 		return id;
 	}
