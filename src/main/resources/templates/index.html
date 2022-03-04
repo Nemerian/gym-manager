@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http:www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment ::html_headtag">
-<meta charset="ISO-8859-1">
 <title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <!-- Bootstrap CSS --> 
+     <link rel="stylesheet" type="text/css" media="all"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
 </head>
-
-<body class="nav-md">
+<body>
+<div th:replace="fragment ::html_header"></div>
    <div class="container body">
       <div class="main_container">
-         <div th:replace="fragment ::html_header"></div>
          <h1 align="center" style="margin-top: 50px;">Body Section</h1>
          <p align="center">Add dynamic contents...</p>   
             <p align="center">Add dynamic contents...</p>
          <p align="center">Add dynamic contents...</p>   
       </div>
-      <footer style="position:fixed" th:replace="fragment ::html_footer"></footer>
    </div>
+   <div th:replace="fragment ::html_footer"></div>
 </body>
 </html>
