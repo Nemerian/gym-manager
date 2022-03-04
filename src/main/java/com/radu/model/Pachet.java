@@ -1,6 +1,5 @@
 package com.radu.model;
 
-import java.util.PropertyPermission;
 import java.util.Date;
 
 import javax.persistence.Entity;

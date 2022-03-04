@@ -43,7 +43,7 @@ public class Istoric_Service {
     }
     
     public Istoric save(Istoric istoric) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.hasLength(istoric.getNumemembru())) {
+        if (StringUtils.hasLength(istoric.getNumemembru())) {
             if (istoric.getId() != null && existsById(istoric.getId())) { 
                 throw new ResourceAlreadyExistsException("Istoric with id: " + istoric.getId() +
                         " already exists");
@@ -51,7 +51,7 @@ public class Istoric_Service {
             return istoric_Repository.save(istoric);
         }
         else {
-            BadResourceException exc = new BadResourceException("Failed to save istoric");
+            BadResourceException exc = new BadResourceException("Failed to save istoric - Lipsa nume membru");
             exc.addErrorMessage("Istoric is null or empty");
             throw exc;
         }
@@ -59,7 +59,7 @@ public class Istoric_Service {
     
     public void update(Istoric istoric) 
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.hasLength(istoric.getNumemembru())) {
+        if (StringUtils.hasLength(istoric.getNumemembru())) {
             if (!existsById(istoric.getId())) {
                 throw new ResourceNotFoundException("Cannot find Contact with id: " + istoric.getId());
             }

@@ -91,7 +91,7 @@ public class WebMVCConfig implements WebMvcConfigurer,  ApplicationContextAware 
         resolver.setApplicationContext(applicationContext);
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setCacheable(false);
-        resolver.setTemplateMode("HTML5");
+        resolver.setTemplateMode("HTML");
         return resolver;
     }
         
@@ -158,7 +158,7 @@ public class WebMVCConfig implements WebMvcConfigurer,  ApplicationContextAware 
         secondaryTemplateResolver.setPrefix("/WEB-INF/view/");
         secondaryTemplateResolver.setSuffix(".html");
         //secondaryTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        secondaryTemplateResolver.setTemplateMode("HTML5");
+        secondaryTemplateResolver.setTemplateMode("HTML");
         secondaryTemplateResolver.setCharacterEncoding("UTF-8");
         secondaryTemplateResolver.setOrder(1);
         secondaryTemplateResolver.setCheckExistence(true);

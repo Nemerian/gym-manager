@@ -12,10 +12,6 @@
 <body>
   <div th:replace="fragment ::html_header"></div>
   <div>
-        <meta charset="UTF-8" />
-        <title th:text="${add} ? 'Create a Membru' : 'Edit a Membru'" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    </head>
     <body>
         <h1 th:text="${add} ? 'Create a Membru:' : 'Edit a Membru:'" />
         <a th:href="@{/membri}">Back to Membru List</a>

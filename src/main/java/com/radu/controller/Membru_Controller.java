@@ -1,5 +1,9 @@
 package com.radu.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -26,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Membru_Controller {
 
-  private final Membru_Repository repository = null;
+  //private final Membru_Repository repository = null;
     
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
   
@@ -80,7 +84,7 @@ public class Membru_Controller {
   @PostMapping(value = "/membri/add")
   public String addMembru(Model model, @ModelAttribute("membru") Membru membru) {        
       try {
-          Membru newMembru = membru_Service.save(membru);
+          membru_Service.save(membru);
           return "redirect:/membri";  
       } catch (Exception ex) {
           // log exception first, 
@@ -93,12 +97,58 @@ public class Membru_Controller {
           return "membru-edit.html";
       }        
   }
+ 
+  @GetMapping(value = {"/membri/{idmembru}/istoric/edit"})
+  public String showEditMembruIstoric(Model model, @PathVariable long idmembru) {
+      Membru membru = null;
+      try {
+         membru = membru_Service.findById(idmembru);
+      } catch (ResourceNotFoundException ex) {
+          model.addAttribute("errorMessage", "Membru not found");
+      }
+  	  List<Pachet> pachete = pachet_Service.findAll();
+      Istoric istoric = null;
+      try {
+         istoric = istoric_Service.findLastByIdMembru(idmembru);
+      } catch (ResourceNotFoundException ex) {
+         // model.addAttribute("errorMessage", "Istoric not found");
+      }
+      if(istoric==null) {
+    	istoric=new Istoric();  
+        model.addAttribute("add", true);
+      }
+      else {
+    	  Calendar obj = Calendar.getInstance();
+          Date datacrt = (Date) obj.getTime();
+    	  if(istoric.getDatasfarsit().after(datacrt)) {
+  	        model.addAttribute("add", false);
+    	  }
+      }
+      istoric.setIdmembru(idmembru);
+      istoric.setNumemembru(membru.getNume()+" "+membru.getPrenume());
+      istoric.setIdtippachet(1L);
+      model.addAttribute("membru", membru);
+      model.addAttribute("istoric", istoric);
+      model.addAttribute("pachete", pachete);
+      return "membru-istoric-edit.html";
+  }
   
-  //What is @RequestBody in spring boot?
-  //Simply put, the @RequestBody annotation maps the HttpRequest body to a transfer or domain object, 
-  // enabling automatic deserialization of the inbound HttpRequest body onto a Java object. 
-  // Spring automatically deserializes the JSON into a Java type assuming an appropriate one is specified.
-		  
+  @PostMapping(value = "/membri/istoric/add")
+  public String addMembruIstoric(Model model, @ModelAttribute("istoric") Istoric istoric) {        
+      try {
+          istoric_Service.save(istoric);
+          return "redirect:/membri";  
+      } catch (Exception ex) {
+          // log exception first, 
+          // then show error
+          String errorMessage = ex.getMessage();
+          logger.error(errorMessage);
+          model.addAttribute("errorMessage", errorMessage);
+          model.addAttribute("add", true);
+          return "membru-istoric-edit.html";
+      }        
+  }
+  
   @GetMapping(value = {"/membri/{id}/edit"})
   public String showEditMembru(Model model, @PathVariable long id) {
       Membru membru = null;
@@ -150,50 +200,6 @@ public class Membru_Controller {
           model.addAttribute("errorMessage", errorMessage);
       }
       return "redirect:/membri";
-  }
-
-  @GetMapping(value = {"/membri/{idmembru}/istoric/edit"})
-  public String showEditIstoric(Model model, @PathVariable long idmembru) {
-      Membru membru = null;
-      try {
-          membru = membru_Service.findById(idmembru);
-      } catch (ResourceNotFoundException ex) {
-          model.addAttribute("errorMessage", "Membru not found");
-      }
-  	  List<Pachet> pachete = pachet_Service.findAll();
-      Istoric istoric = null;
-      try {
-         istoric = istoric_Service.findLastByIdMembru(idmembru);
-      } catch (ResourceNotFoundException ex) {
-          model.addAttribute("errorMessage", "Istoric not found");
-      }
-      if(istoric==null) {
-    	istoric=new Istoric();  
-      }
-      istoric.setIdmembru(idmembru);
-      istoric.setNumemembru(membru.getNume()+' '+membru.getPrenume());
-      model.addAttribute("add", true);
-      model.addAttribute("membru", membru);
-      model.addAttribute("pachete", pachete);
-      model.addAttribute("istoric", istoric);
-      return "membru-istoric-edit.html";
-  }
-  
-  @PostMapping(value = "/membri/istoric/add")
-  public String addIstoric(Model model,
-      @ModelAttribute("istoric") Istoric istoric) {        
-      try {
-          Istoric newistoric = istoric_Service.save(istoric);
-          return "redirect:/membri";  
-      } catch (Exception ex) {
-          // log exception first, 
-          // then show error
-          String errorMessage = ex.getMessage();
-          logger.error(errorMessage);
-          model.addAttribute("errorMessage", errorMessage);
-          model.addAttribute("add", true);
-          return "membru-istoric-edit.html";
-      }        
   }
   
 }

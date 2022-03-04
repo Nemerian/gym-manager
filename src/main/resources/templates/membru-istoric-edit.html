@@ -10,13 +10,9 @@
      <title>Istoric Abonat</title>
 </head>
 <body>
-  <div th:replace="fragment ::html_header"></div>
-  <div>
-        <meta charset="UTF-8" />
-        <title th:text="${add} ? 'Adauga un Pachet' : 'Edit un Pachet'" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    </head>
-    <body>
+    <div th:replace="fragment ::html_header"></div>
+    <div>
+      <body>
         <h1 th:text="${add} ? 'Adauga un Pachet:' : 'Edit un Pachet:'" />
         <a th:href="@{/membri}">Back to Membru List</a>
         <br/><br/>
@@ -26,35 +22,25 @@
                 <tr>
                     <td>IdMembru</td>
                     <td>:</td>
-                    <td th:text="*{idmembru}">...</td>	
+                    <td><input type="text" th:field="*{idmembru}" readonly="readonly" size=8 ></td>	
                 </tr>
                 <tr>
                     <td>NumeMembru</td>
                     <td>:</td>
-                    <td th:text="*{numemembru}">...</td>	
+                    <td><input type="text" th:field="*{numemembru}" readonly="readonly"></td>	
                 </tr>
                 <tr>
                      <td>Selectati Pachet</td>
                      <td>:</td>
                      <td>
-                        <select name="pachet" > 
-                           <option th:each="pachet : ${pachete}" th:text="${pachet.id}"/>
+                        <select th:field="*{idtippachet}" > 
+                           <option th:each="pachet : ${pachete}"
+                              th:value="${pachet.id}"
+                              th:text="${pachet.denumire}"
+                            /option>
                          </select>
                      </td>
                 </tr>
-<!-- 
-      <td><select name="pachet">   th:field="*{idtippachet}"
-          <!-- <td>Selectati Pachet</td>  -->
-          <option th:each="pachet : ${pachete}" th:text="${pachet.denumire}"/>
-      </select></tr>
-                               
-	pachet.denumire
- <option th:each="user : ${allUsers}"
-         th:value="${user.id}"
-         th:selected="${lastselected eq user.id}"
-         th:text="${user.name}">
- </option>                
- -->
                 <tr>
                     <td>DataStart</td>
                     <td>:</td>
@@ -68,7 +54,7 @@
                 <tr>
                     <td>Valoare</td>
                     <td>:</td>
-                    <td><input type="text" field="*{valoare}" /></td>              
+                    <td><input type="text" th:field="*{valoare}" /></td>              
                 </tr>
             </table>
             <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
@@ -77,7 +63,7 @@
         <!-- Check if errorMessage is not null and not empty -->       
         <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />       
     </body>
-</div>
+  </div>
 <div th:replace="fragment ::html_footer"></div>
 </body>
 </html>

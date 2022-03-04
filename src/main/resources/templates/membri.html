@@ -17,13 +17,11 @@
 	    <thead class="thead-dark">
     	<tr>
 			<th style="width:5%">ID</th>
-			<th style="width:10%">Nume</th>
-			<th style="width:10%">Prenume</th>
-			<th style="width:10%">E-mail</th>
+			<th style="width:15%">Nume</th>
+			<th style="width:15%">Prenume</th>
+			<th style="width:15%">E-mail</th>
 			<th style="width:5%">Telefon</th>
 			<th style="width:5%">Data Inscriere</th>
-			<th style="width:10%">Pachet</th>
-			<th style="width:5%">Data expirare</th>
 			<th style="width:10%">PachetCurent</th>
             <th style="width:5%">De_La</th>
             <th style="width:5%">Pana_La</th>
@@ -31,7 +29,12 @@
 			<th style="width:5%">Edit</th>
 			<th style="width:5%">Delete</th>
 		</tr>
-        </thead>		
+        </thead>
+ <!--
+        <tr th:if="${#lists.isEmpty(users)}">
+            <td colspan="5">No Records found. Add some...!</td>
+        </tr>
+ -->
 		<tr th:each="membru : ${membri}">
     		<td th:text="${membru.id}">Id</td>	
     		<td th:text="${membru.nume}">Nume</td>	
@@ -39,11 +42,10 @@
 			<td th:text="${membru.email}">E-mail</td>	
     		<td th:text="${membru.telefon}">Telefon</td>
             <td th:text="${#calendars.format(membru.data,'dd.MM.yyyy')}">Data inscriere</td>
-		   	<td th:text="${denumirepachet}">Pachet</td>
+		   	<td th:text="${denumirepachet}">Pachet Curent</td>
             <td th:text="${#calendars.format(membru.datastart,'dd.MM.yyyy')}">De_La</td>
             <td th:text="${#calendars.format(membru.datasfarsit,'dd.MM.yyyy')}">Pana_La</td>
-            <td><a th:href="@{membri/{id}/istoric/edit(id=${membru.id})}"  class="btn btn-danger" role="button">Actualizare pachet</a></td>			
-			<!-- <td><a href="/@{istoric/{id}/edit(id=${membru.id})" class="btn btn-danger" role="button">Modificare pachet</td> -->
+            <td><a th:href="@{membri/{id}/istoric/edit(id=${membru.id})}"  class="btn btn-danger" role="button">Actualizare pachet</a></td>  
 			<td><a th:href="@{membri/{id}/edit(id=${membru.id})}">Edit</a></td>
 			<td><a th:href="@{membri/{id}/delete(id=${membru.id})}">Delete</a></td>
 		</tr> 
