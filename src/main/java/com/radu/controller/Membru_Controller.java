@@ -1,6 +1,6 @@
 package com.radu.controller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -98,56 +98,6 @@ public class Membru_Controller {
       }        
   }
  
-  @GetMapping(value = {"/membri/{idmembru}/istoric/edit"})
-  public String showEditMembruIstoric(Model model, @PathVariable long idmembru) {
-      Membru membru = null;
-      try {
-         membru = membru_Service.findById(idmembru);
-      } catch (ResourceNotFoundException ex) {
-          model.addAttribute("errorMessage", "Membru not found");
-      }
-  	  List<Pachet> pachete = pachet_Service.findAll();
-      Istoric istoric = null;
-      try {
-         istoric = istoric_Service.findLastByIdMembru(idmembru);
-      } catch (ResourceNotFoundException ex) {
-         // model.addAttribute("errorMessage", "Istoric not found");
-      }
-      if(istoric==null) {
-    	istoric=new Istoric();  
-        model.addAttribute("add", true);
-      }
-      else {
-    	  Calendar obj = Calendar.getInstance();
-          Date datacrt = (Date) obj.getTime();
-    	  if(istoric.getDatasfarsit().after(datacrt)) {
-  	        model.addAttribute("add", false);
-    	  }
-      }
-      istoric.setIdmembru(idmembru);
-      istoric.setNumemembru(membru.getNume()+" "+membru.getPrenume());
-      istoric.setIdtippachet(1L);
-      model.addAttribute("membru", membru);
-      model.addAttribute("istoric", istoric);
-      model.addAttribute("pachete", pachete);
-      return "membru-istoric-edit.html";
-  }
-  
-  @PostMapping(value = "/membri/istoric/add")
-  public String addMembruIstoric(Model model, @ModelAttribute("istoric") Istoric istoric) {        
-      try {
-          istoric_Service.save(istoric);
-          return "redirect:/membri";  
-      } catch (Exception ex) {
-          // log exception first, 
-          // then show error
-          String errorMessage = ex.getMessage();
-          logger.error(errorMessage);
-          model.addAttribute("errorMessage", errorMessage);
-          model.addAttribute("add", true);
-          return "membru-istoric-edit.html";
-      }        
-  }
   
   @GetMapping(value = {"/membri/{id}/edit"})
   public String showEditMembru(Model model, @PathVariable long id) {
@@ -200,6 +150,74 @@ public class Membru_Controller {
           model.addAttribute("errorMessage", errorMessage);
       }
       return "redirect:/membri";
+  }
+  
+  @GetMapping(value = {"/membri/{idmembru}/istoric/edit"})
+  public String showEditMembruIstoric(Model model, @PathVariable long idmembru) {
+      Membru membru = null;
+      try {
+         membru = membru_Service.findById(idmembru);
+      } catch (ResourceNotFoundException ex) {
+          model.addAttribute("errorMessage", "Membru not found");
+      }
+  	  List<Pachet> pachete = pachet_Service.findAll();
+      Istoric istoric = null;
+      try {
+         istoric = istoric_Service.findLastByIdMembru(idmembru);
+      } catch (ResourceNotFoundException ex) {
+         // model.addAttribute("errorMessage", "Istoric not found");
+      }
+      if(istoric==null) {
+    	istoric=new Istoric();  
+        model.addAttribute("add", true);
+      }
+      else {
+    	  Calendar obj = Calendar.getInstance();
+          Date datacrt = (Date) obj.getTime();
+    	  if(istoric.getDatasfarsit().after(datacrt)) {
+  	        model.addAttribute("add", false);
+    	  }
+      }
+      istoric.setIdmembru(idmembru);
+      istoric.setNumemembru(membru.getNume()+" "+membru.getPrenume());
+      istoric.setIdtippachet(1L);
+      model.addAttribute("membru", membru);
+      model.addAttribute("istoric", istoric);
+      model.addAttribute("pachete", pachete);
+      return "membru-istoric-edit.html";
+  }
+  
+  @PostMapping(value = {"/membri/{idmembru}/istoric/edit"})
+  public String updateMembru(Model model, @PathVariable long idmembru, 
+		  @ModelAttribute("istoric") Istoric istoric) {        
+      try {
+    	  istoric_Service.update(istoric);
+          return "redirect:/membri";  
+      } catch (Exception ex) {
+          // log exception first, 
+          // then show error
+          String errorMessage = ex.getMessage();
+          logger.error(errorMessage);
+          model.addAttribute("errorMessage", errorMessage);
+          model.addAttribute("add", false);
+          return "membru-istoric-edit.html";
+      }
+  }
+  
+  @PostMapping(value = "/membri/istoric/add")
+  public String addMembruIstoric(Model model, @ModelAttribute("istoric") Istoric istoric) {        
+      try {
+          istoric_Service.save(istoric);
+          return "redirect:/membri";  
+      } catch (Exception ex) {
+          // log exception first, 
+          // then show error
+          String errorMessage = ex.getMessage();
+          logger.error(errorMessage);
+          model.addAttribute("errorMessage", errorMessage);
+          model.addAttribute("add", true);
+          return "membru-istoric-edit.html";
+      }        
   }
   
 }
