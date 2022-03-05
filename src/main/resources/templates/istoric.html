@@ -34,8 +34,8 @@
     		<td th:text="${istoric.idmembru}">Denumire</td>	
             <td th:text="${istoric.numemembru}">1 jan 2011</td>
             <td th:text="${istoric.denumirepachet}">1 jan 2011</td>
-            <td th:field="${istoric.datainceput}"></td>	
-			<td th:field="${istoric.datasfarsit}"></td>
+            <td th:text="${#calendars.format(istoric.datainceput,'dd.MM.yyyy')}"></td>
+            <td th:text="${#calendars.format(istoric.datasfarsit,'dd.MM.yyyy')}"></td>
             <td th:text="${istoric.valoare}" class="number">500</td>    		
 			<td th:text="${istoric.observatii}">Observatii</td>	
 			<td><a th:href="@{istoric/{id}/edit(id=${istoric.id})}">Edit</a></td>

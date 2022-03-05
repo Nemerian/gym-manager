@@ -12,6 +12,6 @@ public interface Istoric_Repository extends JpaRepository<Istoric, Long> {
 	@Query(value = "SELECT * FROM Istoric WHERE idmembru = ?1", nativeQuery = true)
 	List<Istoric> findByIdMembru(Long IdMembru);
 	
-	@Query(value = "SELECT * FROM Istoric WHERE idmembru = ?1 ORDER BY datastart DESC limit 1", nativeQuery = true)
+	@Query(value = "SELECT * FROM Istoric WHERE idmembru = ?1 ORDER BY datainceput DESC limit 1", nativeQuery = true)
 	Istoric findLastByIdMembru(Long idmembru);
 }
