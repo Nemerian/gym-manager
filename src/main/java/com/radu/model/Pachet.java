@@ -18,7 +18,7 @@ public class Pachet {
 	private Integer durata;
 	private Integer nrsedinte;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date datastart;
+	private Date datainceput;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datasfarsit;
 	private Integer valoare;
@@ -56,12 +56,12 @@ public class Pachet {
 		this.nrsedinte = Nrsedinte;
 	}
 
-	public Date getDatastart() {
-		return this.datastart;
+	public Date getDatainceput() {
+		return this.datainceput;
 	}
 
-	public void setDatastart(Date DataStart) {
-		this.datastart = DataStart;
+	public void setDatainceput(Date DataInceput) {
+		this.datainceput = DataInceput;
 	}
 
 	public Date getDatasfarsit() {

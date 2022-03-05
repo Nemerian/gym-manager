@@ -22,9 +22,9 @@
 			<th style="width:15%">E-mail</th>
 			<th style="width:5%">Telefon</th>
 			<th style="width:5%">Data Inscriere</th>
-			<th style="width:10%">PachetCurent</th>
-            <th style="width:5%">De_La</th>
-            <th style="width:5%">Pana_La</th>
+			<th style="width:10%">Pachet Curent</th>
+            <th style="width:5%">De La</th>
+            <th style="width:5%">Pana La</th>
 			<th style="width:10%">Modificare pachet</th>
 			<th style="width:5%">Edit</th>
 			<th style="width:5%">Delete</th>
@@ -43,7 +43,7 @@
     		<td th:text="${membru.telefon}">Telefon</td>
             <td th:text="${#calendars.format(membru.data,'dd.MM.yyyy')}">Data inscriere</td>
 		   	<td th:text="${denumirepachet}">Pachet Curent</td>
-            <td th:text="${#calendars.format(membru.datastart,'dd.MM.yyyy')}">De_La</td>
+            <td th:text="${#calendars.format(membru.datainceput,'dd.MM.yyyy')}">De_La</td>
             <td th:text="${#calendars.format(membru.datasfarsit,'dd.MM.yyyy')}">Pana_La</td>
             <td><a th:href="@{membri/{id}/istoric/edit(id=${membru.id})}"  class="btn btn-danger" role="button">Actualizare pachet</a></td>  
 			<td><a th:href="@{membri/{id}/edit(id=${membru.id})}">Edit</a></td>

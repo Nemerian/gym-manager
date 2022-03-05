@@ -22,7 +22,7 @@ public class Istoric {
 	private String numemembru;
 	private String denumirepachet;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date datastart;
+	private Date datainceput;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datasfarsit;
 	private Integer valoare;
@@ -67,12 +67,12 @@ public class Istoric {
 		this.denumirepachet = DenumirePachet;
 	}
 
-	public Date getDatastart() {
-		return this.datastart;
+	public Date getDatainceput() {
+		return this.datainceput;
 	}
 
-	public void setDatastart(Date DataStart) {
-		this.datastart = DataStart;
+	public void setDatainceput(Date DataInceput) {
+		this.datainceput = DataInceput;
 	}
 
 	public Date getDatasfarsit() {

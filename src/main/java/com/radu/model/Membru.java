@@ -23,7 +23,7 @@ public class Membru {
 	private Date data;
 	private String denumirepachet;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date datastart;
+	private Date datainceput;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date datasfarsit;
 	
@@ -72,11 +72,11 @@ public class Membru {
 		this.denumirepachet = denumirepachet;
 	}
 
-	public Date getDatastart() {
-		return datastart;
+	public Date getDatainceput() {
+		return datainceput;
 	}
-	public void setDatastart(Date datastart) {
-		this.datastart = datastart;
+	public void setDatainceput(Date datainceput) {
+		this.datainceput = datainceput;
 	}
 
 	public Date getDatasfarsit() {
