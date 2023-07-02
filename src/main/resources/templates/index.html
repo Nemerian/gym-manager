@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment ::html_headtag">
+<head th:replace="fragments ::html_headtag">
 <title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
      <!-- Bootstrap CSS --> 
@@ -11,7 +11,7 @@
         crossorigin="anonymous">
 </head>
 <body>
-<div th:replace="fragment ::html_header"></div>
+<div th:replace="fragments ::html_header"></div>
    <div class="container body">
       <div class="main_container">
          <h1 align="center" style="margin-top: 50px;">Body Section</h1>
@@ -20,6 +20,6 @@
          <p align="center">Add dynamic contents...</p>   
       </div>
    </div>
-   <div th:replace="fragment ::html_footer"></div>
+   <div th:replace="fragments ::html_footer"></div>
 </body>
 </html>

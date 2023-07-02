@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment ::html_headtag">
+   <title>Member list</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <!-- Bootstrap CSS --> 
+     <link rel="stylesheet" type="text/css" media="all"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+   <style>
+       html, body {
+           height: 100%;
+           margin: 0;
+           padding: 0;
+       }
+       .container {
+           min-height: 100vh;
+           display: flex;
+           flex-direction: column;
+       }
+       .main_content {
+           flex: 1;
+       }
+   </style>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragment ::html_header"></div>
+    <div class="table-responsive main_content">
+        <h1 align="center" style="margin-top: 50px;">history</h1>
+    	<table  class="table table-striped"  align="center" cellspacing="1" cellpadding="1" border="1" >
+    	    <thead class="thead-dark">
+        	<tr>
+    			<th style="width:5%">ID</th>
+    			<th style="width:5%">Id member</th>
+    			<th style="width:14%">Nume</th>
+                <th style="width:14%">Prenume</th>
+    			<th style="width:12%">Denumire</th>
+    			<th style="width:10%">De La</th>
+    			<th style="width:10%">Pana La</th>
+    			<th style="width:10%">Valoare</th>
+    			<th style="width:10%">Observatii</th>
+    			<th style="width:5%">Edit</th>
+    			<th style="width:5%">Delete</th>
+    		</tr>
+            </thead>	
+    		<tr th:each="history : ${history}">
+        		<td th:text="${history.id}">Id member</td>	
+        		<td th:text="${history.idMember}">Denumire</td>	
+                <td th:text="${history.memberFamilyName}">1 jan 2011</td>
+                <td th:text="${history.memberPersonalName}">1 jan 2011</td>
+                <td th:text="${history.idPackage}">1 jan 2011</td>
+                <td th:text="${#calendars.format(history.dateStart,'dd.MM.yyyy')}"></td>
+                <td th:text="${#calendars.format(history.dateEnd,'dd.MM.yyyy')}"></td>
+                <td th:text="${history.value}" class="number">Valoare</td>    		
+    			<td th:text="${history.observations}">Observatii</td>	
+    			<td><a th:href="@{history/{id}/edit(id=${history.id})}">Edit</a></td>
+    			<td><a th:href="@{history/{id}/delete(id=${history.id})}">Delete</a></td>
+    		</tr> 
+    	</table>
+    </div>
+    <div th:replace="fragment ::html_footer"></div>
+</div>
+</body>
+</html>

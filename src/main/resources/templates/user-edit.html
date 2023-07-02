@@ -1,0 +1,36 @@
+<form th:action="${add} ? @{/users/add} : @{/users/{id}/edit(id=${user.id})}"
+      th:object="${user}" method="POST">
+    <table border="0">
+        <tr>
+            <td>Username</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{username}" /></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{firstName}" /></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{familyName}" /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>:</td>
+            <td><input type="password" th:field="*{password}" /></td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{role}" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><input type="email" th:field="*{email}" /></td>
+        </tr>
+    </table>
+    <input type="submit" th:value="${add ? 'Create' : 'Update'}" />
+</form>

@@ -1,0 +1,41 @@
+<form th:action="${add} ? @{/packages/add} : @{/packages/{id}/edit(id=${subscription.id})}"
+      th:object="${subscription}" method="POST">
+    <table border="0">
+        <tr>
+            <td>Denumire</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{subscriptionName}" /></td>
+        </tr>
+        <tr>
+            <td>Durata(Zile)</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{length}" /></td>              
+        </tr>
+        <tr>
+            <td>Nrsedinte</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{numberOfAppointments}" /></td>              
+        </tr>
+        <tr>
+            <td>Data Start</td>
+            <td>:</td>
+            <td><input type="date" th:field="*{dateStart}" /></td>              
+        </tr>
+        <tr>
+            <td>Data Sfarsit</td>
+            <td>:</td>
+            <td><input type="date" th:field="*{dateEnd}" /></td>              
+        </tr>
+        <tr>
+            <td>Valoare</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{value}" /></td>              
+        </tr>
+        <tr>
+            <td>Observatii</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{observations}" /></td>              
+        </tr>
+    </table>
+    <input type="submit" th:value="${add ? 'Create' : 'Update'}" />
+</form>

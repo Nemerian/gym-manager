@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment ::html_headtag">
-   <title>Lista Membri</title>
+   <title>Member list</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
      <!-- Bootstrap CSS --> 
      <link rel="stylesheet" type="text/css" media="all"
@@ -13,31 +13,27 @@
 <body>
 <div th:replace="fragment ::html_header"></div>
 <div class="table-responsive">
-    <h1 align="center" style="margin-top: 50px;">Lista pachete <a href="/pachete/add" class="btn btn-danger" role="button">Adauga pachet</a> </h1>
+    <h1 align="center" style="margin-top: 50px;">Package list<a href="/packages/add" class="btn btn-danger" role="button">Adauga package</a> </h1>
 	<table  class="table table-striped"  align="center" cellspacing="1" cellpadding="1" border="1" >
 	    <thead class="thead-dark">
     	<tr>
 			<th style="width:5%">ID</th>
-			<th style="width:15%">Denumire</th>
+			<th style="width:20%">Denumire</th>
 			<th style="width:20%">Nrsedinte</th>
-			<th style="width:20%">De La</th>
-			<th style="width:10%">Pana La</th>
 			<th style="width:10%">Valoare</th>
-			<th style="width:10%">Observatii</th>
+			<th style="width:30%">Observatii</th>
 			<th style="width:5%">Edit</th>
 			<th style="width:5%">Delete</th>
 		</tr>
         </thead>	
-		<tr th:each="pachet : ${pachete}">
-    		<td th:text="${pachet.id}">Id</td>	
-    		<td th:text="${pachet.denumire}">Denumire</td>	
-            <td th:text="${pachet.nrsedinte}" class="number">30</td>
-            <td th:text="${#calendars.format(pachet.datainceput,'dd.MM.yyyy')}">1 jan 2011</td>
-            <td th:text="${#calendars.format(pachet.datasfarsit,'dd.MM.yyyy')}">1 jan 2011</td>
-            <td th:text="${pachet.valoare}" class="number">500</td>    		
-			<td th:text="${pachet.observatii}">Observatii</td>	
-			<td><a th:href="@{pachete/{id}/edit(id=${pachet.id})}">Edit</a></td>
-			<td><a th:href="@{pachete/{id}/delete(id=${pachet.id})}">Delete</a></td>
+		<tr th:each="package : ${package}">
+    		<td th:text="${package.id}">Id</td>	
+    		<td th:text="${package.subscriptionName}">Denumire</td>	
+			<td th:text="${package.numberOfAppointments}">Numar sedinte</td>	
+            <td th:text="${package.value}" class="number">Valoare</td>    		
+			<td th:text="${package.observations}">Observatii</td>	
+			<td><a th:href="@{packages/{id}/edit(id=${package.id})}">Edit</a></td>
+			<td><a th:href="@{packages/{id}/delete(id=${package.id})}">Delete</a></td>
 		</tr> 
 	</table>
 </div>
